@@ -18,9 +18,15 @@ public class Monopoly2 extends Canvas{
         public static void main(String[] args) {  
         Monopoly2 m=new Monopoly2();  
         JFrame f=new JFrame();  
-        f.add(m);  
-        f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        f.setVisible(true);  
+        int width = 765;
+        int height = 740;
+        f.add(m);
+        f.setSize(width, height); 
+        f.setVisible(true);
+        
+        //JFrame textbox = new JFrame();
+        
     }  
+      
   
 }
