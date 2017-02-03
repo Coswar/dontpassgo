@@ -3,6 +3,7 @@ import javax.swing.JFrame;
   
 public class Monopoly extends Canvas{  
       
+    @Override
     public void paint(Graphics g) {  
   
         Toolkit t=Toolkit.getDefaultToolkit();  
