@@ -7,7 +7,7 @@ public class Monopoly extends Canvas{
   
         Toolkit t=Toolkit.getDefaultToolkit();  
         Image i=t.getImage("images/monopoly.jpg");  
-        g.drawImage(i, 0,0,700,700,this);  
+        g.drawImage(i, 0,0,750,700,this);  
           
     }  
         public static void main(String[] args) {  
