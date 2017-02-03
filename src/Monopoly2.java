@@ -3,7 +3,11 @@ import javax.swing.JFrame;
   
 public class Monopoly2 extends Canvas{  
       
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Override
     public void paint(Graphics g) {  
   
         Toolkit t=Toolkit.getDefaultToolkit();  
