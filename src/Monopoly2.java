@@ -1,26 +1,34 @@
 import java.awt.*;  
-import javax.swing.JFrame;
-import javax.swing.JTextField;  
+import javax.swing.*;
+
   
 public class Monopoly2 extends Canvas{  
   
 	private static final long serialVersionUID = 1L;
-	@Override
-    public void paint(Graphics g) {  
-  
-        Toolkit t=Toolkit.getDefaultToolkit();  
-        Image i=t.getImage("src/images/monopoly.jpg");  
-        g.drawImage(i, 0,0,750,700,this);       	
-    }
+
 	
     public static void main(String[] args) {
     	
-        Monopoly2 m=new Monopoly2();  
-        JFrame f=new JFrame();  
-        int width = 765;
-        int height = 740;
-        f.add(m);
+        board m =new board();
+        JFrame f = new JFrame();
+        JPanel p = new JPanel(new BorderLayout());
+        JTextField t =new JTextField("Hello"); 
+        int width = 1000;
+        int height = 1000;
+        p.add(m, FlowLayout.LEFT);
+        f.add(p);
+        
+        
+       /* t.setAlignmentX(900);
+        t.setAlignmentY(900);
+        p.add(t);*/
         f.setSize(width, height); 
         f.setVisible(true);
-    }  
+        
+        
+    }
+        
+
+        
+  
 }
