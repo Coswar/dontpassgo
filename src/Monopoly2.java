@@ -44,6 +44,7 @@ public class Monopoly2 extends Canvas{
         text_p2.setLayout(new BoxLayout(text_p2, BoxLayout.X_AXIS));
         text_p2.setBounds(100,100,100,100);
         text_box_bottom_right.setEditable(false);
+        // work
         
         
         //colour in frames to see boundries in order to size correctly
