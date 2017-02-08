@@ -22,7 +22,7 @@ public class Monopoly2 extends Canvas{
         JPanel text_p2 = new JPanel();
         
         //define the Layout manager used within the JPanels
-        frame_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
+        frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
         //import the board image from the board class
         board board_image =new board();
@@ -50,9 +50,6 @@ public class Monopoly2 extends Canvas{
         board_p.setBackground(Color.black);
         text_p.setBackground(Color.red);
         text_p2.setBackground(Color.orange);
-        
-        //Construct the layout (x axis ; line elements up horizontally)
-        frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
         //add sub-panels to the framing panel
         board_p.add(board_image);
