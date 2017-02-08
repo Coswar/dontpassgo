@@ -9,27 +9,46 @@ public class Monopoly2 extends Canvas{
 	
     public static void main(String[] args) {
     	
-    	//creating the frame and sub containers to store items
-        board m =new board();
+    		
+    	//creating the frame 
         JFrame f = new JFrame();
+        
+        //set the JFrame's title
+        f.setTitle("Monopoly");
+        
+        //create JPanels to encompass the various elements
         JPanel board_p = new JPanel(new BorderLayout());
         JPanel frame_p = new JPanel(new BorderLayout());
-        JPanel text_p = new JPanel(new BorderLayout());
+        JPanel text_p = new JPanel(new FlowLayout());
         
-        //the size of the overall frame
-        int width = 1000;
-        int height = 1000;
+        //import the board image from the board class
+        board board_image =new board();
         
         //implementing a text box
-       /* JTextField t =new JTextField(8);
-        t.setFont(t.getFont().deriveFont(50f));
-        text_p.add(t);*/
+        text_box text_box = new text_box();
+        text_p.add(text_box);
         
-        //add panels to the frame
-        board_p.add(m, FlowLayout.LEFT);
-        frame_p.add(board_p,FlowLayout.LEFT);
-        //frame_p.add(text_p, FlowLayout.RIGHT);
+        //colour in frames to see boundries in order to size correctly
+        board_p.setBackground(Color.black);
+        text_p.setBackground(Color.red);
+        
+        //Construct the layout (x axis ; line elements up horizontally)
+        frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
+        
+        //set the size of the text box
+        text_p.setPreferredSize(new Dimension(200,0));
+        
+        //add sub-panels to the framing panel
+        board_p.add(board_image);
+        frame_p.add(board_p);
+        frame_p.add(text_p);
+        
+        //add the frame-panel to the Jframe 
         f.add(frame_p);
+        
+        //ints for the size of the overall frame
+        int width = 1000;
+        int height = 1000;
         
         //set the size and visibility of the frame
         f.setSize(width, height); 
