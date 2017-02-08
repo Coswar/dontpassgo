@@ -8,11 +8,11 @@ public class Monopoly2 extends Canvas{
 
 	
     public static void main(String[] args) {
-    	
-    		
+    	  		
     	//creating the frame,set window title and define the exit 
         JFrame f = new JFrame("Monopoly");
         
+        //when we close the window the program will end
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //create JPanels to encompass the various elements and define the layout manager used within each panel
@@ -22,10 +22,10 @@ public class Monopoly2 extends Canvas{
         JPanel text_p2 = new JPanel();
         
         //define the Layout manager used within the JPanels
-        frame_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
+        frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
         //import the board image from the board class
-        board board_image =new board();
+        board board_image = new board();
         
         //import a text box from text box class
         text_box text_box_top_right = new text_box();
