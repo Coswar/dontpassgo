@@ -36,13 +36,13 @@ public class Monopoly2 extends Canvas{
         
         //set the size of the text panel
         text_p.setBounds(10,50,50,50);
-        text_p2.setAlignmentY(Component.TOP_ALIGNMENT);
+        text_p.setAlignmentY(Component.TOP_ALIGNMENT);
         
         //second text box for testing purposes
-        text_box text_box_bottom_right = new text_box();
+        text_display text_box_bottom_right = new text_display();
         text_p2.add(text_box_bottom_right);
         text_p2.setLayout(new BoxLayout(text_p2, BoxLayout.X_AXIS));
-        text_p2.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        text_p2.setBounds(100,100,100,100);
         
         
         //colour in frames to see boundries in order to size correctly
