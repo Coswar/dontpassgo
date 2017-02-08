@@ -28,13 +28,11 @@ public class Monopoly2 extends Canvas{
         // Import the board image from the board class
         board board_image = new board();
         
-<<<<<<< HEAD
-        
         right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
         //import a text box from text box class
-=======
+
         // Import a text box from text box class
->>>>>>> bce36a60dca3c6f45d38f8b96eb8063b2b8b3917
+
         text_box text_box_top_right = new text_box();
         
         // Add to a panel and set layout and alignment
