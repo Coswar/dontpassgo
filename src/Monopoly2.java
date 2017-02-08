@@ -56,7 +56,7 @@ public class Monopoly2 extends Canvas{
         frame_p.add(board_p);
         frame_p.add(text_p);
         frame_p.add(text_p2);
-        
+         	
         //add the frame-panel to the Jframe 
         f.add(frame_p);
         
