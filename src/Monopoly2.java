@@ -51,9 +51,6 @@ public class Monopoly2 extends Canvas{
         text_p.setBackground(Color.red);
         text_p2.setBackground(Color.orange);
         
-        //Construct the layout (x axis ; line elements up horizontally)
-        frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
-        
         //add sub-panels to the framing panel
         board_p.add(board_image);
         frame_p.add(board_p);
