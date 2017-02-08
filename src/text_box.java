@@ -1,3 +1,5 @@
+import java.awt.Component;
+
 import javax.swing.*;
 
 
@@ -11,6 +13,7 @@ public class text_box extends JTextField{
 		JTextField t =new JTextField("hello");
 	    t.setFont(t.getFont().deriveFont(50f));
 	    t.setBounds(width, height, width, height);
+	    t.setAlignmentY(Component.TOP_ALIGNMENT);
     
 	}
 }	
