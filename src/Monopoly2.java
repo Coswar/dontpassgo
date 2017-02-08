@@ -35,8 +35,9 @@ public class Monopoly2 extends Canvas{
         //Construct the layout (x axis ; line elements up horizontally)
         frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
-        //set the size of the text box
-        text_p.setPreferredSize(new Dimension(100,100));
+        //set the size of the panels
+        //board_p.setPreferredSize(new Dimension(100,100));
+        //text_p.setPreferredSize(new Dimension(100,100));
         
         //add sub-panels to the framing panel
         board_p.add(board_image);
@@ -47,8 +48,8 @@ public class Monopoly2 extends Canvas{
         f.add(frame_p);
         
         //ints for the size of the overall frame
-        int width = 1000;
-        int height = 1000;
+        int width = 1315;
+        int height = 638;
         
         //set the size and visibility of the frame
         f.setSize(width, height); 
