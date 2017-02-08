@@ -30,7 +30,7 @@ public class Monopoly2 extends Canvas{
         //import a text box from text box class
         text_box text_box_top_right = new text_box();
         
-        //add to a panel and set layout and aligment
+        //add to a panel and set layout and alignment
         text_p.add(text_box_top_right);
         text_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
         
