@@ -24,7 +24,7 @@ public class Monopoly2 extends Canvas{
         //import the board image from the board class
         board board_image =new board();
         
-        //implementing a text box
+        //implementing a text box from text box class
         text_box text_box = new text_box();
         text_p.add(text_box);
         
