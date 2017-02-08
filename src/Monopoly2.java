@@ -10,11 +10,10 @@ public class Monopoly2 extends Canvas{
     public static void main(String[] args) {
     	
     		
-    	//creating the frame 
-        JFrame f = new JFrame();
+    	//creating the frame,set window title and define the exit 
+        JFrame f = new JFrame("Monopoly");
         
-        //set the JFrame's title
-        f.setTitle("Monopoly");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //create JPanels to encompass the various elements and define the layout manager used within each panel
         JPanel board_p = new JPanel(new BorderLayout());
@@ -23,7 +22,7 @@ public class Monopoly2 extends Canvas{
         JPanel text_p2 = new JPanel();
         
         //define the Layout manager used within the JPanels
-        //BoxLayout layout = new BoxLayout(container, BoxLayout.X_AXIS);
+        frame_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
         
         //import the board image from the board class
         board board_image =new board();
@@ -34,7 +33,10 @@ public class Monopoly2 extends Canvas{
         //add to a panel and set layout and aligment
         text_p.add(text_box_top_right);
         text_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
-        text_p.setAlignmentY(Component.TOP_ALIGNMENT);
+        
+        //set the size of the text panel
+        text_p.setBounds(10,50,50,50);
+        text_p2.setAlignmentY(Component.TOP_ALIGNMENT);
         
         //second text box for testing purposes
         text_box text_box_bottom_right = new text_box();
@@ -44,6 +46,7 @@ public class Monopoly2 extends Canvas{
         
         
         //colour in frames to see boundries in order to size correctly
+        frame_p.setBackground(Color.green);
         board_p.setBackground(Color.black);
         text_p.setBackground(Color.red);
         text_p2.setBackground(Color.orange);
@@ -51,25 +54,23 @@ public class Monopoly2 extends Canvas{
         //Construct the layout (x axis ; line elements up horizontally)
         frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
-        //set the size of the panels
-        board_p.setPreferredSize(new Dimension(100,100));
-        text_p.setPreferredSize(new Dimension(100,100));
-        
         //add sub-panels to the framing panel
         board_p.add(board_image);
         frame_p.add(board_p);
         frame_p.add(text_p);
-        frame_p.add(text_box_top_right);
+        frame_p.add(text_p2);
         
         //add the frame-panel to the Jframe 
         f.add(frame_p);
         
         //set the size and visibility of the frame
-        f.setSize(1315, 638); 
+        f.setResizable(false);
+        f.setSize(1315, 638);  
         f.setVisible(true);
         
         
     }
+    
         
 
         
