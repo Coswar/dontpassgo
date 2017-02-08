@@ -16,10 +16,10 @@ public class Monopoly2 extends Canvas{
         //set the JFrame's title
         f.setTitle("Monopoly");
         
-        //create JPanels to encompass the various elements
+        //create JPanels to encompass the various elements and define the layout manager used within each panel
         JPanel board_p = new JPanel(new BorderLayout());
-        JPanel frame_p = new JPanel(new BorderLayout());
-        JPanel text_p = new JPanel(new FlowLayout());
+        JPanel frame_p = new JPanel();
+        JPanel text_p = new JPanel(new BorderLayout());
         
         //import the board image from the board class
         board board_image =new board();
@@ -36,7 +36,7 @@ public class Monopoly2 extends Canvas{
         frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         
         //set the size of the text box
-        text_p.setPreferredSize(new Dimension(200,0));
+        text_p.setPreferredSize(new Dimension(100,100));
         
         //add sub-panels to the framing panel
         board_p.add(board_image);
