@@ -18,6 +18,7 @@ public class Monopoly2 extends Canvas{
         //create JPanels to encompass the various elements and define the layout manager used within each panel
         JPanel board_p = new JPanel(new BorderLayout());
         JPanel frame_p = new JPanel();
+        JPanel right_p = new JPanel();
         JPanel text_p = new JPanel();
         JPanel text_p2 = new JPanel();
         
@@ -27,16 +28,17 @@ public class Monopoly2 extends Canvas{
         //import the board image from the board class
         board board_image = new board();
         
+        
+        right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
         //import a text box from text box class
         text_box text_box_top_right = new text_box();
         
         //add to a panel and set layout and alignment
         text_p.add(text_box_top_right);
-        text_p.setLayout(new BoxLayout(text_p, BoxLayout.X_AXIS));
+        text_p.setLayout(new BoxLayout(text_p, BoxLayout.Y_AXIS));
         
         //set the size of the text panel
         text_p.setBounds(10,50,50,50);
-        text_p.setAlignmentY(Component.TOP_ALIGNMENT);
         
         //second text box for testing purposes
         text_display text_box_bottom_right = new text_display();
@@ -44,7 +46,6 @@ public class Monopoly2 extends Canvas{
         text_p2.setLayout(new BoxLayout(text_p2, BoxLayout.X_AXIS));
         text_p2.setBounds(100,100,100,100);
         text_box_bottom_right.setEditable(false);
-        // work
         
         
         //colour in frames to see boundries in order to size correctly
@@ -54,17 +55,18 @@ public class Monopoly2 extends Canvas{
         text_p2.setBackground(Color.orange);
         
         //add sub-panels to the framing panel
+        right_p.add(text_p2);
+        right_p.add(text_p);
         board_p.add(board_image);
         frame_p.add(board_p);
-        frame_p.add(text_p);
-        frame_p.add(text_p2);
+        frame_p.add(right_p);
          	
         //add the frame-panel to the Jframe 
         f.add(frame_p);
         
         //set the size and visibility of the frame
         f.setResizable(false);
-        f.setSize(1315, 638);  
+        f.setSize(1210, 629);  
         f.setVisible(true);
         
         

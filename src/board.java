@@ -10,7 +10,7 @@ public class board extends Canvas{
   
         Toolkit t = Toolkit.getDefaultToolkit();  
         Image i = t.getImage("src/images/monopoly-800x800.jpg");  
-        g.drawImage(i, 0,0,650,600,this);       	
+        g.drawImage(i, 0,0,600,600,this);       	
 	}
 	
 }
