@@ -47,6 +47,9 @@ public class Monopoly2 extends Canvas{
         text_box_top_right = new JTextArea(15, 50);
         output.add(text_box_top_right);
         output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
+        JScrollPane scroller = new JScrollPane(text_box_top_right);
+        scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         //disable editing within the display box
         text_box_top_right.setWrapStyleWord(true);
         text_box_top_right.setEditable(false);
@@ -78,7 +81,7 @@ public class Monopoly2 extends Canvas{
         right_p.setPreferredSize(temp);
         right_p.setMaximumSize(temp);
         right_p.setMinimumSize(temp);
-        
+        right_p.add(scroller);
         //add sub-panels to the framing panel
         right_p.add(output);
         right_p.add(input);
@@ -97,6 +100,7 @@ public class Monopoly2 extends Canvas{
         
     }
     
+    //class to print input to output panel
     public static class ButtonListener implements ActionListener
     {
 
