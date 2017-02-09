@@ -1,11 +1,20 @@
-import java.awt.*;  
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
+
+
 
   
 public class Monopoly2 extends Canvas{  
   
 	private static final long serialVersionUID = 1L;
-
+	private static String ENTER = "Enter";
+    static JButton enterButton;
+    public static JTextArea text_box_top_right;
+    public static JTextField text_box_bottom_right;
 	
     public static void main(String[] args) {
     	  		
@@ -35,17 +44,28 @@ public class Monopoly2 extends Canvas{
         //right_p.(new GridLayout(1, 1));
 
         //create a text input panel, add text_box class to it
-        text_display text_box_top_right = new text_display();
+        text_box_top_right = new JTextArea(15, 50);
         output.add(text_box_top_right);
         output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
-        //disable editing within the dispay box
+        //disable editing within the display box
+        text_box_top_right.setWrapStyleWord(true);
         text_box_top_right.setEditable(false);
+        text_box_top_right.setWrapStyleWord(true);
+        DefaultCaret caret = (DefaultCaret) text_box_top_right.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
         
         //create a text output panel, add text_display class to it 
-        text_box text_box_bottom_right = new text_box();
+        text_box_bottom_right = new JTextField(20);
         input.add(text_box_bottom_right);
         input.setLayout(new BoxLayout(input, BoxLayout.X_AXIS));
+        ButtonListener buttonListener = new ButtonListener();
+        enterButton = new JButton("Enter");
+        enterButton.setActionCommand(ENTER);
+        enterButton.addActionListener(buttonListener);
+        text_box_bottom_right.setActionCommand(ENTER);
+        text_box_bottom_right.addActionListener(buttonListener);
+        text_box_bottom_right.requestFocus();
         
         // Colour in frames to see boundaries in order to size correctly
         frame_p.setBackground(Color.green);
@@ -77,8 +97,24 @@ public class Monopoly2 extends Canvas{
         
     }
     
-        
+    public static class ButtonListener implements ActionListener
+    {
 
-        
-  
+        public void actionPerformed(final ActionEvent ev)
+        {
+            if (!text_box_bottom_right.getText().trim().equals(""))
+            {
+                String cmd = ev.getActionCommand();
+                if (ENTER.equals(cmd))
+                {
+                	text_box_top_right.append(text_box_bottom_right.getText());
+                	text_box_top_right.append("\n");
+                }
+            }
+            text_box_bottom_right.setText("");
+            text_box_bottom_right.requestFocus();
+        }
+    }
+    
+   
 }
