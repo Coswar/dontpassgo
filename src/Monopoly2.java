@@ -63,9 +63,6 @@ public class Monopoly2 extends Canvas{
         input.add(text_box_bottom_right);
         input.setLayout(new BoxLayout(input, BoxLayout.X_AXIS));
         ButtonListener buttonListener = new ButtonListener();
-        enterButton = new JButton("Enter");
-        enterButton.setActionCommand(ENTER);
-        enterButton.addActionListener(buttonListener);
         text_box_bottom_right.setActionCommand(ENTER);
         text_box_bottom_right.addActionListener(buttonListener);
         text_box_bottom_right.requestFocus();
