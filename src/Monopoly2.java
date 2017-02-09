@@ -19,46 +19,43 @@ public class Monopoly2 extends Canvas{
         JPanel board_p = new JPanel(new BorderLayout());
         JPanel frame_p = new JPanel();
         JPanel right_p = new JPanel();
-        JPanel text_p = new JPanel();
-        JPanel text_p2 = new JPanel();
+        JPanel output = new JPanel();
+        JPanel input = new JPanel();
         
         // Define the Layout manager used within the JPanels
         frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
+        right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
         
         // Import the board image from the board class
         board board_image = new board();
         
-        right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
-        //import a text box from text box class
+        //grib layout testing - ignore for now
+        
+        //Gridlayout Layout new GridLayout(1,1);
+        //right_p.(new GridLayout(1, 1));
 
-        // Import a text box from text box class
-
-        text_box text_box_top_right = new text_box();
+        //create a text input panel, add text_box class to it
+        text_display text_box_top_right = new text_display();
+        output.add(text_box_top_right);
+        output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
+        //disable editing within the dispay box
+        text_box_top_right.setEditable(false);
         
-        // Add to a panel and set layout and alignment
-        text_p.add(text_box_top_right);
-        text_p.setLayout(new BoxLayout(text_p, BoxLayout.Y_AXIS));
         
-        // Set the size of the text panel
-        text_p.setBounds(10,50,50,50);
-        
-        // Second text box for testing purposes
-        text_display text_box_bottom_right = new text_display();
-        text_p2.add(text_box_bottom_right);
-        text_p2.setLayout(new BoxLayout(text_p2, BoxLayout.X_AXIS));
-        text_p2.setBounds(100,100,100,100);
-        text_box_bottom_right.setEditable(false);
-        
+        //create a text output panel, add text_display class to it 
+        text_box text_box_bottom_right = new text_box();
+        input.add(text_box_bottom_right);
+        input.setLayout(new BoxLayout(input, BoxLayout.X_AXIS));
         
         // Colour in frames to see boundaries in order to size correctly
         frame_p.setBackground(Color.green);
         board_p.setBackground(Color.black);
-        text_p.setBackground(Color.red);
-        text_p2.setBackground(Color.orange);
+        output.setBackground(Color.red);
+        input.setBackground(Color.orange);
         
         //add sub-panels to the framing panel
-        right_p.add(text_p2);
-        right_p.add(text_p);
+        right_p.add(output);
+        right_p.add(input);
         board_p.add(board_image);
         frame_p.add(board_p);
         frame_p.add(right_p);
