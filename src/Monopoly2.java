@@ -53,6 +53,12 @@ public class Monopoly2 extends Canvas{
         output.setBackground(Color.red);
         input.setBackground(Color.orange);
         
+        //resizing area for size of right panel vs left
+        Dimension temp = new Dimension(300,629);
+        right_p.setPreferredSize(temp);
+        right_p.setMaximumSize(temp);
+        right_p.setMinimumSize(temp);
+        
         //add sub-panels to the framing panel
         right_p.add(output);
         right_p.add(input);
@@ -65,7 +71,7 @@ public class Monopoly2 extends Canvas{
         
         // Set the size and visibility of the frame
         f.setResizable(false);
-        f.setSize(1210, 629);  
+        f.setSize(906, 629);  
         f.setVisible(true);
         
         
