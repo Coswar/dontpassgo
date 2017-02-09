@@ -44,7 +44,7 @@ public class Monopoly2 extends Canvas{
         //right_p.(new GridLayout(1, 1));
 
         //create a text input panel, add text_box class to it
-        text_box_top_right = new JTextArea(15, 50);
+        text_box_top_right = new JTextArea(150, 50);
         output.add(text_box_top_right);
         output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
         JScrollPane scroller = new JScrollPane(text_box_top_right);
