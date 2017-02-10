@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
+//import com.sun.glass.events.KeyEvent;
 
-
-  
 public class Monopoly2 extends Canvas{  
   
 	private static final long serialVersionUID = 1L;
@@ -36,24 +35,32 @@ public class Monopoly2 extends Canvas{
         right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
         
         // Import the board image from the board class
-        board board_image = new board();
+        /*JButton move = new JButton("HI");
+        move.setMnemonic(KeyEvent.VK_M);
         
-        //grib layout testing - ignore for now
-        
-        //Gridlayout Layout new GridLayout(1,1);
-        //right_p.(new GridLayout(1, 1));
+	    move.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				board_p.setBackground(Color.white);
+			
+			}
+		});*/
+	    
+        token board_image = new token();
 
         //create a text input panel, add text_box class to it
-        text_box_top_right = new JTextArea(150, 50);
+        text_box_top_right = new JTextArea("  TOKEN IS\n  DEAD CENTER\n",150, 50);
         output.add(text_box_top_right);
         output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
         JScrollPane scroller = new JScrollPane(text_box_top_right);
         scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        
         //disable editing within the display box
         text_box_top_right.setWrapStyleWord(true);
         text_box_top_right.setEditable(false);
         text_box_top_right.setWrapStyleWord(true);
+        text_box_top_right.setFont(text_box_top_right.getFont().deriveFont(30f));
         DefaultCaret caret = (DefaultCaret) text_box_top_right.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
@@ -79,9 +86,11 @@ public class Monopoly2 extends Canvas{
         right_p.setMaximumSize(temp);
         right_p.setMinimumSize(temp);
         right_p.add(scroller);
+        
         //add sub-panels to the framing panel
         right_p.add(output);
         right_p.add(input);
+        //board_p.add(move);
         board_p.add(board_image);
         frame_p.add(board_p);
         frame_p.add(right_p);
@@ -93,8 +102,6 @@ public class Monopoly2 extends Canvas{
         f.setResizable(false);
         f.setSize(906, 629);  
         f.setVisible(true);
-        
-        
     }
     
     //class to print input to output panel
