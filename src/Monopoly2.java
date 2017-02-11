@@ -5,15 +5,23 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
-//import com.sun.glass.events.KeyEvent;
+import com.sun.glass.events.KeyEvent;
 
-public class Monopoly2 extends Canvas{  
-  
+//import com.sun.glass.events.KeyEvent;
+public class Monopoly2 extends Canvas{
+	
+	static int count = 0;
 	private static final long serialVersionUID = 1L;
 	private static String ENTER = "Enter";
     static JButton enterButton;
     public static JTextArea text_box_top_right;
     public static JTextField text_box_bottom_right;
+    static int x = 0;
+    
+    public Monopoly2(int a) {
+    	x = a;
+    	
+    }
 	
     public static void main(String[] args) {
     	  		
@@ -34,22 +42,41 @@ public class Monopoly2 extends Canvas{
         frame_p.setLayout(new BoxLayout(frame_p, BoxLayout.X_AXIS));
         right_p.setLayout(new BoxLayout(right_p, BoxLayout.Y_AXIS));
         
-        // Import the board image from the board class
-        /*JButton move = new JButton("HI");
+        // Adding a button to move the token
+        JButton move = new JButton("Move");
         move.setMnemonic(KeyEvent.VK_M);
+        token board_image = new token(x);
         
 	    move.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
-				board_p.setBackground(Color.white);
-			
+			public void actionPerformed(final ActionEvent ev) {
+				
+	        	{
+	        		String cmd = ev.getActionCommand();
+	                if (ENTER.equals(cmd))
+	                {
+	        		x++;
+					 if ( x != 0)
+				        {
+				        	Monopoly2 Monopoly2 = new Monopoly2(x);
+				        };
+	        	}
 			}
-		});*/
-	    
-        token board_image = new token();
+			}
+		});
+
+    	
+        board_p.add(board_image);
+        frame_p.add(board_p);
+        frame_p.add(right_p);
+         	
+        // Add the frame-panel to the Jframe 
+        f.add(frame_p);
+        //token board_image = new token(x, y);
+        
 
         //create a text input panel, add text_box class to it
-        text_box_top_right = new JTextArea("  TOKEN IS\n  DEAD CENTER\n",150, 50);
+        text_box_top_right = new JTextArea("     MONOPOLY\n",150, 50);
         output.add(text_box_top_right);
         output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
         JScrollPane scroller = new JScrollPane(text_box_top_right);
@@ -67,6 +94,7 @@ public class Monopoly2 extends Canvas{
         
         //create a text output panel, add text_display class to it 
         text_box_bottom_right = new JTextField(20);
+        input.add(move);
         input.add(text_box_bottom_right);
         input.setLayout(new BoxLayout(input, BoxLayout.X_AXIS));
         ButtonListener buttonListener = new ButtonListener();
@@ -90,7 +118,6 @@ public class Monopoly2 extends Canvas{
         //add sub-panels to the framing panel
         right_p.add(output);
         right_p.add(input);
-        //board_p.add(move);
         board_p.add(board_image);
         frame_p.add(board_p);
         frame_p.add(right_p);
@@ -102,7 +129,11 @@ public class Monopoly2 extends Canvas{
         f.setResizable(false);
         f.setSize(906, 629);  
         f.setVisible(true);
-    }
+        
+    } 
+    
+
+    
     
     //class to print input to output panel
     public static class ButtonListener implements ActionListener
@@ -115,6 +146,7 @@ public class Monopoly2 extends Canvas{
                 String cmd = ev.getActionCommand();
                 if (ENTER.equals(cmd))
                 {
+              
                 	text_box_top_right.append(text_box_bottom_right.getText());
                 	text_box_top_right.append("\n");
                 }
