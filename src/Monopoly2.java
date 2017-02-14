@@ -10,21 +10,15 @@ import com.sun.glass.events.KeyEvent;
 //import com.sun.glass.events.KeyEvent;
 public class Monopoly2 extends Canvas{
 	
-	static int count = 0;
 	private static final long serialVersionUID = 1L;
 	private static String ENTER = "Enter";
     static JButton enterButton;
     public static JTextArea text_box_top_right;
     public static JTextField text_box_bottom_right;
     static int x = 0;
-    
-    public Monopoly2(int a) {
-    	x = a;
-    	
-    }
 	
     public static void main(String[] args) {
-    	  		
+    		
     	// Creating the frame,set window title and define the exit 
         JFrame f = new JFrame("Monopoly");
         
@@ -44,41 +38,29 @@ public class Monopoly2 extends Canvas{
         
         // Adding a button to move the token
         JButton move = new JButton("Move");
-        move.setMnemonic(KeyEvent.VK_M);
         token board_image = new token(x);
+       
         
 	    move.addActionListener(new ActionListener() {
 
-			public void actionPerformed(final ActionEvent ev) {
+			public void actionPerformed(ActionEvent e) {
 				
-	        	{
-	        		String cmd = ev.getActionCommand();
-	                if (ENTER.equals(cmd))
-	                {
-	        		x++;
-					 if ( x != 0)
-				        {
-				        	Monopoly2 Monopoly2 = new Monopoly2(x);
-				        };
-	        	}
-			}
+	                	token board_image = new token(x);
+	                	board_p.add(board_image);
+	                    frame_p.add(board_p);
+	                    f.add(frame_p);
+	                    
+	                    //testing area
+	                    //String numberAsString = Integer.toString(x);
+	                   // text_box_top_right.append(numberAsString);
+	                    x++;
 			}
 		});
 
-    	
-        board_p.add(board_image);
-        frame_p.add(board_p);
-        frame_p.add(right_p);
-         	
-        // Add the frame-panel to the Jframe 
-        f.add(frame_p);
-        //token board_image = new token(x, y);
-        
-
         //create a text input panel, add text_box class to it
-        text_box_top_right = new JTextArea("     MONOPOLY\n",150, 50);
+        text_box_top_right = new JTextArea("                    MONOPOLY\n",150, 50);
         output.add(text_box_top_right);
-        output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
+        //output.setLayout(new BoxLayout(output, BoxLayout.X_AXIS));
         JScrollPane scroller = new JScrollPane(text_box_top_right);
         scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -86,7 +68,6 @@ public class Monopoly2 extends Canvas{
         //disable editing within the display box
         text_box_top_right.setWrapStyleWord(true);
         text_box_top_right.setEditable(false);
-        text_box_top_right.setWrapStyleWord(true);
         text_box_top_right.setFont(text_box_top_right.getFont().deriveFont(30f));
         DefaultCaret caret = (DefaultCaret) text_box_top_right.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -103,13 +84,13 @@ public class Monopoly2 extends Canvas{
         text_box_bottom_right.requestFocus();
         
         // Colour in frames to see boundaries in order to size correctly
-        frame_p.setBackground(Color.green);
-        board_p.setBackground(Color.black);
-        output.setBackground(Color.red);
-        input.setBackground(Color.orange);
+        //frame_p.setBackground(Color.green);
+        //board_p.setBackground(Color.black);
+        //output.setBackground(Color.red);
+        //input.setBackground(Color.orange);
         
         //resizing area for size of right panel vs left
-        Dimension temp = new Dimension(300,629);
+        Dimension temp = new Dimension(500,729);
         right_p.setPreferredSize(temp);
         right_p.setMaximumSize(temp);
         right_p.setMinimumSize(temp);
@@ -127,14 +108,11 @@ public class Monopoly2 extends Canvas{
         
         // Set the size and visibility of the frame
         f.setResizable(false);
-        f.setSize(906, 629);  
+        f.setSize(1280, 729);  
         f.setVisible(true);
         
     } 
-    
-
-    
-    
+  
     //class to print input to output panel
     public static class ButtonListener implements ActionListener
     {
