@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
-import com.sun.glass.events.KeyEvent;
+// import com.sun.glass.events.KeyEvent;
 
 //import com.sun.glass.events.KeyEvent;
 public class Monopoly2 extends Canvas{
