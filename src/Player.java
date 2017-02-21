@@ -9,11 +9,11 @@ public class Player {
 	}
 	
 	public void move (int squares) {
-		position = position + squares;
+		position += position + squares;
 		if (position < 0) {
-			position = position + Monopoly.NUM_SQUARES;
+			position += Monopoly.NUM_SQUARES;
 		} else if (position >= Monopoly.NUM_SQUARES) {
-			position = position % Monopoly.NUM_SQUARES;
+			position += position % Monopoly.NUM_SQUARES;
 		}
 		return;
 	}
