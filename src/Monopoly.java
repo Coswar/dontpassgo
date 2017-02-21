@@ -16,21 +16,21 @@ public class Monopoly {
 		return;
 	}
 	
-	private void tour () {
-		ui.displayString("TOUR MODE");
-		for (int p=0; p<MAX_NUM_PLAYERS; p++) {
-			for (int i=0; i<NUM_SQUARES; i++) {
-				players.get(p).move(+1);
-				ui.display();
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					System.out.println("Sleep exeception.");
-				} 
-			}
-		}
-		return;
-	}
+//	private void tour () {
+//		ui.displayString("TOUR MODE");
+//		for (int p=0; p<MAX_NUM_PLAYERS; p++) {
+//			for (int i=0; i<NUM_SQUARES; i++) {
+//				players.get(p).move(+1);
+//				ui.display();
+//				try {
+//					Thread.sleep(500);
+//				} catch (InterruptedException e) {
+//					System.out.println("Sleep exeception.");
+//				} 
+//			}
+//		}
+//		return;
+//	}
 	
 	private void echo () {
 		String command;
@@ -45,7 +45,7 @@ public class Monopoly {
 	
 	public static void main (String args[]) {	
 		Monopoly game = new Monopoly();		
-		game.tour();
+		// game.tour();
 		game.echo();
 		return;
 	}
