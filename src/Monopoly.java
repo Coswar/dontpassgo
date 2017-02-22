@@ -16,7 +16,7 @@ public class Monopoly {
 		return;
 	}
 	
-//	private void tour () {
+//	private void tour() {
 //		ui.displayString("TOUR MODE");
 //		for (int p=0; p<MAX_NUM_PLAYERS; p++) {
 //			for (int i=0; i<NUM_SQUARES; i++) {
@@ -45,7 +45,7 @@ public class Monopoly {
 	
 	public static void main (String args[]) {	
 		Monopoly game = new Monopoly();		
-		// game.tour();
+		 //game.tour();
 		game.echo();
 		return;
 	}
