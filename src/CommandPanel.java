@@ -27,11 +27,9 @@ public class CommandPanel extends JPanel  {
 		   }
 		ActionListener listener = new AddActionListener();
 		commandField.addActionListener(listener);
-		Dimension size = new Dimension(445,25);
-		commandField.setPreferredSize(size);
 		commandField.setFont(new Font("Times New Roman", Font.PLAIN, FONT_SIZE));
 		setLayout(new BorderLayout());
-		add(commandField, BorderLayout.EAST);
+		add(commandField, BorderLayout.CENTER);
 		return;
 	}
 
