@@ -17,7 +17,7 @@ public class Monopoly {
 	}
 	
 	private void tour () {
-		ui.displayString("TOUR MODE");
+		//ui.displayString("TOUR MODE");
 		for (int p=0; p<MAX_NUM_PLAYERS; p++) {
 			for (int i=0; i<NUM_SQUARES; i++) {
 				players.get(p).move(+1);
@@ -27,6 +27,7 @@ public class Monopoly {
 				} catch (InterruptedException e) {
 					System.out.println("Sleep exeception.");
 				} 
+				echo();
 			}
 		}
 		return;
@@ -35,11 +36,12 @@ public class Monopoly {
 	private void echo () {
 		String command;
 		ui.display();
-		ui.displayString("ECHO MODE");
+		ui.displayString("INPUT MODE");
 		do {
 			command = ui.getCommand();
 			ui.displayString(command);
-		} while (!command.equals("quit"));
+		} while (!command.equals("move"));
+		ui.displayString("Moving!");
 		return;
 	}
 	
