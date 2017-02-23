@@ -2,9 +2,13 @@
 public class Player {
 	
 	private int position;
+	private int balance;
+	private String name;
 	
 	Player () {
+		name = "Unset";
 		position = 0;
+		balance = 1500;
 		return;
 	}
 	
