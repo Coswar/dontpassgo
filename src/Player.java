@@ -62,5 +62,14 @@ public class Player {
 	public void depositToBalance(int deposit) {
 		this.balance += deposit;
 	}
+
+	public int getDie1() {
+		return die1;
+	}
+
+	public int getDie2() {
+		return die2;
+	}
+	
 	
 }
