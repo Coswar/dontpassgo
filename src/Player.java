@@ -4,11 +4,15 @@ public class Player {
 	private String name;
 	private int position;
 	private int balance;
+	private int die1;
+	private int die2;
 	
 	Player () {
 		name = "Unset";
 		position = 0;
 		balance = 1500;
+		die1 = 0;
+		die2 = 0;
 		return;
 	}
 	
@@ -22,10 +26,27 @@ public class Player {
 		return;
 	}
 	
+    public void roll() {
+    	this.die1 = (int)(Math.random()*6) + 1;
+        this.die2 = (int)(Math.random()*6) + 1;
+        }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+    
 	public int getPosition () {
 		return position;
 	}
 
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	
 	public int getBalance() {
 		return balance;
 	}
@@ -41,20 +62,5 @@ public class Player {
 	public void depositToBalance(int deposit) {
 		this.balance += deposit;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-	
-	
-	
 	
 }
