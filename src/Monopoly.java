@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Monopoly {
 
 	public static final int MAX_NUM_PLAYERS = 6;
@@ -29,6 +31,14 @@ public class Monopoly {
 				} 
 				echo();
 			}
+			
+			String[] options = new String[] {"Continue", "Switch"};
+			int result = JOptionPane.showOptionDialog(null, "Player"+p + "'s moves are finished. Would you "
+					+ "like to continue or switch to input?", "Switch?",
+	        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+			if (result==JOptionPane.NO_OPTION) {
+        	    p = MAX_NUM_PLAYERS; 
+        	}
 		}
 		return;
 	}
@@ -36,11 +46,20 @@ public class Monopoly {
 	private void echo () {
 		String command;
 		ui.display();
-		ui.displayString("INPUT MODE");
+		ui.displayString("   INPUT MODE" + "\n  Commands:" + "\n  'move'"+ "\n  'exit'");
 		do {
 			command = ui.getCommand();
 			ui.displayString(command);
+			if(command.equals("exit")){
+				String[] options = new String[] {"Yes", "No"};
+				int result = JOptionPane.showOptionDialog(null, "Are you sure you would like to Exit?", "Exit?",
+		        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+				if (result==JOptionPane.YES_OPTION) {
+	        	    System.exit(0);
+	        	}
+			}
 		} while (!command.equals("move"));
+		
 		ui.displayString("Moving!");
 		return;
 	}

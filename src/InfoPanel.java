@@ -26,7 +26,7 @@ public class InfoPanel extends JPanel {
 	}
 	
 	public void addText (String text) {
-		textArea.setText(textArea.getText()+"\n"+text);
+		textArea.setText(text);
 	}
 
 }

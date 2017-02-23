@@ -51,7 +51,7 @@ public class UI {
             	}
             }
         });
-		return;
+		
 	}
 	
 	public String getCommand () {
