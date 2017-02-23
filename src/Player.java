@@ -1,9 +1,9 @@
 
 public class Player {
 	
+	private String name;
 	private int position;
 	private int balance;
-	private String name;
 	
 	Player () {
 		name = "Unset";
@@ -32,6 +32,14 @@ public class Player {
 
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+	
+	public void withdrawFromBalance(int withdrawal) {
+		this.balance -= withdrawal;
+	}
+	
+	public void depositToBalance(int deposit) {
+		this.balance += deposit;
 	}
 
 	public String getName() {
