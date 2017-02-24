@@ -9,8 +9,8 @@ public class Player {
 	Player () {
 		name = "Unset";
 		balance = 1500;		
-		die1 = 0;		
-		die2 = 0;		
+		die1 = (int)(Math.random()*6) + 1;		
+		die2 = (int)(Math.random()*6) + 1;
 		position = 0;
 		return;
 	}
@@ -44,10 +44,7 @@ public class Player {
 	
 	public int getBalance() {		
 		return balance;		
-	}		
-	public void setBalance(int balance) {		
-		this.balance = balance;		
-	}		
+	}				
 			
 	public void withdrawFromBalance(int withdrawal) {		
 		this.balance -= withdrawal;		
@@ -62,5 +59,4 @@ public class Player {
 	public int getDie2() {		
 		return die2;		
 	}		
-
 }
