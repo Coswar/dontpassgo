@@ -19,7 +19,6 @@ public class monopoly_test {
 	}
 	
 	private int tour(int current_player) {
-	
 		for ( int p=current_player; p<MAX_NUM_PLAYERS; p++) {
 			for (int i=0; i<NUM_SQUARES; i++) {
 				players.get(p).move(+1);
@@ -48,7 +47,7 @@ public class monopoly_test {
 		String command;
 		ui.display();
 		ui.displayString("  INPUT MODE\n" + "\n  Commands:\n " + "\n  'move': forward one square\n "
-		+ "\n  'exit': exit game\n"+ "\n Enter player number (1-5) to switch to that player\n");
+		+ "\n  'exit': exit game\n"+ "\n 'end turn': end your turn and \n");
 		
 		do {
 			command = ui.getCommand();
@@ -61,7 +60,7 @@ public class monopoly_test {
 			}
 			
 			if (command.equals("end turn")){
-				current_player = tour(current_player + 1);
+				current_player = (current_player + 1);
 				echo(current_player);
 		}
 		
