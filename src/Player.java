@@ -11,7 +11,7 @@ public class Player {
 	Player () {
 		name = "Unset";
 		tokenColour = "Unset";
-		position = 1;
+		position = 0;
 		balance = 1500;		
 		die1 = (int)(Math.random()*6) + 1;		
 		die2 = (int)(Math.random()*6) + 1;

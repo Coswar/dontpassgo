@@ -61,7 +61,7 @@ public class Monopoly {
 	        	}
 			}
 			
-			if (command.equals("1") || command.equals("2") || command.equals("3") || command.equals("4") || command.equals("5")){
+			if (command.equals("1") || command.equals("2") || command.equals("3") || command.equals("4") || command.equals("5") || command.equals("6")){
 				String command_2 = ui.getCommand();
 				if(command_2.equals("move"))
 				{
