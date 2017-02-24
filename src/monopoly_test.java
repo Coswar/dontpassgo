@@ -46,23 +46,36 @@ public class monopoly_test {
 	private int echo (int current_player) {
 		String command;
 		ui.display();
-		ui.displayString("  INPUT MODE\n" + "\n  Commands:\n " + "\n  'move': forward one square\n "
-		+ "\n  'exit': exit game\n"+ "\n 'end turn': end your turn and \n");
+		ui.displayString("                            Input Command for Player " +(current_player+1) +"\n"
+	                    +"                           (Enter 'help' for more info):\n");
 		
 		do {
 			command = ui.getCommand();
 			ui.displayString(command);
 			
 			if(command.equals("move")){
+				ui.displayString("                                   Moving!");
 				current_player = tour(current_player);
 				echo(current_player);
-				ui.displayString("                                   Moving!");
+				
 			}
 			
 			if (command.equals("end turn")){
+				ui.displayString("                                   Next Player!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				} 
 				current_player = (current_player + 1);
 				echo(current_player);
-		}
+			}
+			
+			if(command.equals("help")){
+				ui.displayString("\n  Available Commands:\n " + "\n  'move': forward one square\n "
+						+ "\n 'end turn': end your turn and switch to next player \n"+ "\n  'exit': exit game\n");
+			}
+			
 		
 		} while (!command.equals("exit"));
 		
