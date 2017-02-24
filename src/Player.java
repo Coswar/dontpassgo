@@ -1,16 +1,20 @@
 
 public class Player {
 	private String name;		
+	private String tokenColour;
 	private int position;			
 	private int balance;		
 	private int die1 = (int)(Math.random()*6) + 1;		
-	private int die2 = (int)(Math.random()*6) + 1; 	
+	private int die2 = (int)(Math.random()*6) + 1;
+	
+	
 	Player () {
 		name = "Unset";
+		tokenColour = "Unset";
+		position = 1;
 		balance = 1500;		
 		die1 = (int)(Math.random()*6) + 1;		
 		die2 = (int)(Math.random()*6) + 1;
-		position = 1;
 		return;
 	}
 	
@@ -35,8 +39,16 @@ public class Player {
 	
 	public void setName(String name) {		
 		this.name = name;		
-	}		
+	}
     
+	public String getTokenColour() {
+		return tokenColour;
+	}
+
+	public void setTokenColour(String tokenColour) {
+		this.tokenColour = tokenColour;
+	}
+
 	public int getPosition () {
 		return position;
 	}
