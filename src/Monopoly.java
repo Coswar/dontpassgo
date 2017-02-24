@@ -47,8 +47,7 @@ public class Monopoly {
 		String command;
 		ui.display();
 		ui.displayString("  INPUT MODE\n" + "\n  Commands:\n " + "\n  'move': forward one square\n "
-		+ "\n  'exit': exit game\n"+ "\n  'previous player': end turn and go to previous player\n "
-				+ "\n  'next player': end turn and go to next player");
+		+ "\n  'exit': exit game\n"+ "\n Enter player number (1-5) to switch to that player\n");
 		do {
 			command = ui.getCommand();
 			ui.displayString(command);
@@ -61,12 +60,15 @@ public class Monopoly {
 	        	    System.exit(0);
 	        	}
 			}
-			if(command.equals("next player")){
-				return(p+1);
-			}
-			if(command.equals("previous player")){
-				return(p-1);
-			}
+			
+			if (command.equals("1") || command.equals("2") || command.equals("3") || command.equals("4") || command.equals("5")){
+				String command_2 = ui.getCommand();
+				if(command_2.equals("move"))
+				{
+					return((Integer.valueOf((String) command))-1);
+					}
+		}
+		
 		} while (!command.equals("move"));
 		
 		ui.displayString("                                   Moving!");
