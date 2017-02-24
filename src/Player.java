@@ -3,15 +3,14 @@ public class Player {
 	private String name;		
 	private int position;			
 	private int balance;		
-	private int die1;		
-	private int die2; 
-	
+	private int die1 = (int)(Math.random()*6) + 1;		
+	private int die2 = (int)(Math.random()*6) + 1; 	
 	Player () {
 		name = "Unset";
 		balance = 1500;		
 		die1 = (int)(Math.random()*6) + 1;		
 		die2 = (int)(Math.random()*6) + 1;
-		position = 0;
+		position = 1;
 		return;
 	}
 	
