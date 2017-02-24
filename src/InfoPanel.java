@@ -15,7 +15,7 @@ public class InfoPanel extends JPanel {
 	
 	InfoPanel () {
 		textArea.setEditable(false);
-		textArea.setFont(new Font("Times New Roman", Font.PLAIN, FONT_SIZE));
+		textArea.setFont(new Font("Calbari", Font.PLAIN, FONT_SIZE));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

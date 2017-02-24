@@ -19,8 +19,8 @@ public class Monopoly {
 	}
 	
 	private void tour () {
-		//ui.displayString("TOUR MODE");
-		for (int p=0; p<MAX_NUM_PLAYERS; p++) {
+			echo(0);
+		for ( int p=0; p<MAX_NUM_PLAYERS; p++) {
 			for (int i=0; i<NUM_SQUARES; i++) {
 				players.get(p).move(+1);
 				ui.display();
@@ -29,7 +29,7 @@ public class Monopoly {
 				} catch (InterruptedException e) {
 					System.out.println("Sleep exeception.");
 				} 
-				echo();
+				p = echo(p);
 			}
 			
 			String[] options = new String[] {"Continue", "Switch"};
@@ -43,13 +43,16 @@ public class Monopoly {
 		return;
 	}
 	
-	private void echo () {
+	private int echo (int p) {
 		String command;
 		ui.display();
-		ui.displayString("   INPUT MODE" + "\n  Commands:" + "\n  'move'"+ "\n  'exit'");
+		ui.displayString("  INPUT MODE\n" + "\n  Commands:\n " + "\n  'move': forward one square\n "
+		+ "\n  'exit': exit game\n"+ "\n  'previous player': end turn and go to previous player\n "
+				+ "\n  'next player': end turn and go to next player");
 		do {
 			command = ui.getCommand();
 			ui.displayString(command);
+			
 			if(command.equals("exit")){
 				String[] options = new String[] {"Yes", "No"};
 				int result = JOptionPane.showOptionDialog(null, "Are you sure you would like to Exit?", "Exit?",
@@ -58,16 +61,22 @@ public class Monopoly {
 	        	    System.exit(0);
 	        	}
 			}
+			if(command.equals("next player")){
+				return(p+1);
+			}
+			if(command.equals("previous player")){
+				return(p-1);
+			}
 		} while (!command.equals("move"));
 		
-		ui.displayString("Moving!");
-		return;
+		ui.displayString("                                   Moving!");
+		return(p);
 	}
 	
 	public static void main (String args[]) {	
 		Monopoly game = new Monopoly();		
 		game.tour();
-		game.echo();
+		game.echo(0);
 		return;
 	}
 }
