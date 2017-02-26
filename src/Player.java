@@ -1,5 +1,6 @@
 
 public class Player {
+	private int id; //Unique ID for each Player
 	private String name;		
 	private String tokenColour;
 	private int position;			
@@ -7,17 +8,18 @@ public class Player {
 	private int die1 = (int)(Math.random()*6) + 1;		
 	private int die2 = (int)(Math.random()*6) + 1;
 	
-	
-	Player () {
-		name = "Unset";
-		tokenColour = "Unset";
-		position = 0;
-		balance = 1500;		
-		die1 = (int)(Math.random()*6) + 1;		
-		die2 = (int)(Math.random()*6) + 1;
+	//Constructor now receives id and name:
+	Player (int id, String name) {
+		this.id = id;
+		this.name = name;
+		this.tokenColour = "Unset";
+		this.position = 0;
+		this.balance = 1500;		
+		this.die1 = (int)(Math.random()*6) + 1;		
+		this.die2 = (int)(Math.random()*6) + 1;
 		return;
 	}
-	
+
 	public void move (int squares) {
 		position = position + squares;
 		if (position < 0) {
@@ -53,6 +55,14 @@ public class Player {
 		return position;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getBalance() {		
 		return balance;		
 	}				
