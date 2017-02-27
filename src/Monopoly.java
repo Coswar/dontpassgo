@@ -82,13 +82,9 @@ public class Monopoly {
 		case "0":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "it is not owned \n" +
  
-					"it costs: " + players.get(current_player).getPrice(curr_pos) + "You may but this property by inputting command: buy");
-			try {
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+					"it costs: " + players.get(current_player).getPrice(curr_pos) + ". You may but this property by inputting command: buy\n"
+					+"Or press enter to continue!");
+			
 			break;
 			
 		case "1":
@@ -96,25 +92,17 @@ public class Monopoly {
 					+ site_owners[curr_pos] + "\n" + "You owe rent of: " +
 					players.get(current_player).getRent(curr_pos) + "\n" + "you can pay this by entering command: pay rent" );
 			rent_check = 1;
-			try {
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			
 			break;
 			
 		case "2":
-			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos));
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) +"\nPress enter to continue!");
+			
 			break;
 		}
 		 
-
+		command = ui.getCommand();
+		ui.displayString(command);
 		// Displaying text with players name, as it looks more user friendly.
 		ui.displayString("                            Input Command for Player " + (current_player + 1) + ": "
 				+ players.get(current_player).getName() + "\n"
