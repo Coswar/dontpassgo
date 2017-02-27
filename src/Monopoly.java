@@ -35,6 +35,7 @@ public class Monopoly {
 					System.out.println("Sleep exeception.");
 				}
 				if(die1==die2){
+					roll_count = 0;
 					ui.displayString("Double Roll! Move again!");
 					try {
 						Thread.sleep(1000);
@@ -80,11 +81,11 @@ public class Monopoly {
 		
 		case "roll":
 			if (roll_count == 0){
+				roll_count = roll_count + 1;
 				ui.displayString("                                   Moving!");
 				ui.displayString("rollcount:"+roll_count);
 				current_player = tour(current_player);
 				echo(current_player);
-				roll_count = roll_count + 1;
 			}
 			else{
 				ui.displayString("                                   To many moves, wait til next turn!");
