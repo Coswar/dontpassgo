@@ -7,6 +7,10 @@ public class Monopoly {
 	public static final int MAX_NUM_PLAYERS = 6;
 	public static final int MIN_NUM_PLAYERS = 2;
 	public static final int NUM_SQUARES = 40;
+	public String[] site_owned = {"2", "0", "2", "0", "2", "0", "0", "2", "0", "0", "2", "0", "0", "0", "0", "0", "0", "2", "0", "0", 
+			"2", "0", "2", "0", "0", "0", "0", "0", "0", "0", "2", "0", "0", "2", "0", "0", "2", "0", "2", "0"
+		};
+	public String[] site_owners = new String[40];
 
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private UI ui = new UI(players);
@@ -71,13 +75,13 @@ public class Monopoly {
 		String command;
 		ui.display();
 		
-		check = players.get(current_player).siteInfo(curr_pos);
+		check = site_owned[curr_pos];
 		ui.displayString(check);
 		
 		switch(check){
 		case "0":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "it is not owned \n" +
-					"You may but this property by inputting command: buy");
+					"it costs: " + players.get(current_player).getPrice(curr_pos) + "You may but this property by inputting command: buy");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -87,7 +91,7 @@ public class Monopoly {
 			
 		case "1":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "\n it is owned by "
-					+ players.get(current_player).getOwner(curr_pos) + "\n" + "You owe rent of: " +
+					+ site_owners[curr_pos] + "\n" + "You owe rent of: " +
 					players.get(current_player).getRent(curr_pos) + "\n" + "you can pay this by entering command: pay rent" );
 			rent_check = 1;
 			try {
@@ -97,6 +101,14 @@ public class Monopoly {
 			}
 			break;
 			
+		case "2":
+			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos));
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
 		}
 		 
 
@@ -174,13 +186,27 @@ public class Monopoly {
 				echo(current_player);
 			}
 			break;
+			
+		case "buy":
+			if(site_owned[curr_pos] == "0"){
+				int temp = current_player;
+			site_owners[curr_pos] = players.get(temp).getName();
+			site_owned[curr_pos] = "1";
+			players.get(current_player).withdrawFromBalance(players.get(current_player).getPrice(curr_pos));
+			ui.displayString("The site has been bought");
+			}
+			else{
+			ui.displayString("This site is allready owned");
+			}
+			break;
 		
 		case "help":
 		
 			ui.displayString("\n  Available Commands:\n " + "\n  'roll': roll dice and move\n "
 					+ "\n 'balance': to get your current balance \n"
 					+ "\n 'end turn': end your turn and switch to next player \n" + "\n  'exit': exit game\n"
-					+ "\n  Press enter to continue\n");
+					+ "\n 'buy': buys the current site"
+					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
 			ui.displayString(command);
 			break;

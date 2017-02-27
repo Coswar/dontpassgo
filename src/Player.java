@@ -8,19 +8,15 @@ public class Player {
 	private int die1 = (int)(Math.random()*6) + 1;		
 	private int die2 = (int)(Math.random()*6) + 1;
 	public String[] site_info = { "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue", "Income Tax", "Reading Railroad",
-			"Oriental Avenue", "Chance", "Vermont Avenue", "Connecticut Avenue", "Jail", "St.Charles Place", "Electric Company",
+			"Oriental Avenue", "Chance", "Vermont Avenue", "Connecticut Avenue", "Jail (just visiting)", "St.Charles Place", "Electric Company",
 			"States Avenue", "Virginia Avenue", "Pennsylvania Railroad", "St.James Place", "Community Chest", "Tenessee Avenue",
 			"New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue", "Illinois Avenue", "B&O Railroad",
 			"Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens", "Go To Jail", "Pacific Avenue", "North Carolina Avenue",
 			"Community Chest", "Pennsylvania Avenue", "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"
 	};
-	public String[] site_owned = {"2", "0", "2", "0", "2", "0", "0", "2", "0", "0", "2", "0", "0", "0", "0", "0", "0", "2", "0", "0", 
-			"2", "0", "2", "0", "0", "0", "0", "0", "0", "0", "2", "0", "0", "2", "0", "0", "2", "0", "2", "0"
-		};
 	int[] site_cost = {0,60,0,60,0,200,100,0,100,120,0,140,150,140,160,200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,
 			320,200,0,350,0,400
 		};
-	public String[] site_owners;
 	int site_rent = 100;
 	
 	
@@ -102,15 +98,12 @@ public class Player {
 		return site_info[currpos];
 	}
 	
-	public String siteInfo(int currpos){
-		return site_owned[currpos];
-	}
-	
-	public String getOwner(int currpos){
-		return site_owners[currpos];
-	}
-	
 	public int getRent(int currpos){
 		return site_rent;
 	}
+	
+	public int getPrice(int currpos){
+		return site_cost[currpos];
+	}
+	
 }
