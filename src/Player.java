@@ -7,6 +7,14 @@ public class Player {
 	private int balance;		
 	private int die1 = (int)(Math.random()*6) + 1;		
 	private int die2 = (int)(Math.random()*6) + 1;
+	private String[] tile_info = { "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue", "Income Tax", "Reading Railroad",
+			"Oriental Avenue", "Chance", "Vermont Avenue", "Connecticut Avenue", "Jail", "St.Charles Place", "Electric Company",
+			"States Avenue", "Virginia Avenue", "Pennsylvania Railroad", "St.James Place", "Community Chest", "Tenessee Avenue",
+			"New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue", "Illinois Avenue", "B&O Railroad",
+			"Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens", "Go To Jail", "Pacific Avenue", "North Carolina Avenue",
+			"Community Chest", "Pennsylvania Avenue", "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"
+	};
+	
 	
 	//Constructor now receives id and name:
 	Player (int id, String name) {
