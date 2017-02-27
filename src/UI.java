@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UI {
 
 	private static final int FRAME_WIDTH = 1200;
-	private static final int FRAME_HEIGHT = 810;
+	private static final int FRAME_HEIGHT = 710;
 	
 	private JFrame frame = new JFrame();
 	private BoardPanel boardPanel;	

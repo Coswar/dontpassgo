@@ -81,10 +81,12 @@ public class Monopoly {
 		switch(check){
 		case "0":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "it is not owned \n" +
+ 
 					"it costs: " + players.get(current_player).getPrice(curr_pos) + "You may but this property by inputting command: buy");
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			} 
+			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			break;
@@ -96,7 +98,8 @@ public class Monopoly {
 			rent_check = 1;
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			} 
+			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			break;
@@ -159,18 +162,30 @@ public class Monopoly {
 			break;
 		
 		case "end turn":
-		
-			ui.displayString("                                   Next Player!");
+			if(roll_count == 1){
+				ui.displayString("                                   Next Player!");
 
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				System.out.println("Sleep exeception.");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+				roll_count = 0;
+				current_player = (current_player + 1);
+				echo(current_player);
+				break;
 			}
-			roll_count = 0;
-			current_player = (current_player + 1);
-			echo(current_player);
-			break;
+			else{
+				ui.displayString("     You haven't rolled yet, please roll before moving to next player!");
+
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+				echo(current_player);
+			}
+			
 
 		case "exit":
 		
