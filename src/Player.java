@@ -38,9 +38,9 @@ public class Player {
 		return;
 	}
 	
-	public void roll() {		
-    	this.die1 = (int)(Math.random()*6) + 1;		
-        this.die2 = (int)(Math.random()*6) + 1;		
+	public static int roll(int die1) {		
+    	die1 = (int)(Math.random()*6) + 1;		
+        return (die1);
     }	
 	
 	public String getName() {		

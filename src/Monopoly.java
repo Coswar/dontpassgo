@@ -10,7 +10,7 @@ public class Monopoly {
 
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private UI ui = new UI(players);
-
+	int roll_count = 0;
 	int currentGamePlayerCnt = 0;
 
 	Monopoly() {
@@ -20,14 +20,28 @@ public class Monopoly {
 	}
 
 	private int tour(int current_player) {
+		int die1,die2,total_die;
+		die1 = Player.roll(1);
+		die2 = Player.roll(1);
+		total_die = (die1+die2);
+		
 		for (int p = current_player; p < MAX_NUM_PLAYERS; p++) {
 			for (int i = 0; i < NUM_SQUARES; i++) {
-				players.get(p).move(+1);
+				players.get(p).move(+total_die);
 				ui.display();
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					System.out.println("Sleep exeception.");
+				}
+				if(die1==die2){
+					ui.displayString("Double Roll! Move again!");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+					tour(current_player);
 				}
 				echo(current_player);
 			}
@@ -45,7 +59,6 @@ public class Monopoly {
 	}
 
 	private int echo(int current_player) {
-
 		// The number of players is dynamic depending on user input, using that instead of 6
 		if (current_player == currentGamePlayerCnt) {
 			current_player = 0;
@@ -65,11 +78,19 @@ public class Monopoly {
 		// Using switch instead of if-if ladder, as it is more efficient
 		switch (command) {
 		
-		case "move":
+		case "roll":
+			if (roll_count == 0){
+				ui.displayString("                                   Moving!");
+				ui.displayString("rollcount:"+roll_count);
+				current_player = tour(current_player);
+				echo(current_player);
+				roll_count = roll_count + 1;
+			}
+			else{
+				ui.displayString("                                   To many moves, wait til next turn!");
+				
+			}
 			
-			ui.displayString("                                   Moving!");
-			current_player = tour(current_player);
-			echo(current_player);
 			break;
 		
 		case "balance":
@@ -77,7 +98,7 @@ public class Monopoly {
 			ui.displayString("Your current balance: " + players.get(current_player).getBalance());
 			
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -92,7 +113,7 @@ public class Monopoly {
 			} catch (InterruptedException e) {
 				System.out.println("Sleep exeception.");
 			}
-
+			roll_count = 0;
 			current_player = (current_player + 1);
 			echo(current_player);
 			break;
@@ -114,7 +135,7 @@ public class Monopoly {
 		
 		case "help":
 		
-			ui.displayString("\n  Available Commands:\n " + "\n  'move': forward one square\n "
+			ui.displayString("\n  Available Commands:\n " + "\n  'roll': roll dice and move\n "
 					+ "\n 'balance': to get your current balance \n"
 					+ "\n 'end turn': end your turn and switch to next player \n" + "\n  'exit': exit game\n"
 					+ "\n  Press enter to continue\n");
