@@ -80,35 +80,33 @@ public class Monopoly {
 		
 		switch(check){
 		case "0":
-			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "it is not owned \n" +
+			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + " it is not owned \n" +
  
-					"it costs: " + players.get(current_player).getPrice(curr_pos) + ". You may but this property by inputting command: buy\n"
-					+"Or press enter to continue!");
+					"it costs: " + players.get(current_player).getPrice(curr_pos) + ". You may buy this property by inputting command: 'buy'!\n"
+					+"\n" +"      Input Command for Player " 
+					+ (current_player + 1) + ": " + players.get(current_player).getName() + "\n"
+					+ "(Enter 'help' for more info):\n");
 			
 			break;
 			
 		case "1":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "\n it is owned by "
 					+ site_owners[curr_pos] + "\n" + "You owe rent of: " +
-					players.get(current_player).getRent(curr_pos) + "\n" + "you can pay this by entering command: pay rent" );
+					players.get(current_player).getRent(curr_pos) + "\n" + "you can pay this by entering command: pay rent" +"\n" +"      Input Command for Player " 
+					+ (current_player + 1) + ": " + players.get(current_player).getName() + "\n"
+					+ "(Enter 'help' for more info):\n");
 			rent_check = 1;
-			
 			break;
 			
 		case "2":
-			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) +"\nPress enter to continue!");
-			
+			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) +"\n" +"      Input Command for Player " 
+				+ (current_player + 1) + ": " + players.get(current_player).getName() + "\n"
+				+ "(Enter 'help' for more info):\n");
 			break;
 		}
 		 
-		command = ui.getCommand();
-		ui.displayString(command);
 		// Displaying text with players name, as it looks more user friendly.
-		ui.displayString("                            Input Command for Player " + (current_player + 1) + ": "
-				+ players.get(current_player).getName() + "\n"
-				+ "                           (Enter 'help' for more info):\n");
  
-		 
 		
 		command = ui.getCommand();
 		ui.displayString(command);
@@ -171,7 +169,7 @@ public class Monopoly {
 				} catch (InterruptedException e) {
 					System.out.println("Sleep exeception.");
 				}
-				echo(current_player);
+				//echo(current_player);
 			}
 			
 
