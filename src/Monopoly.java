@@ -178,6 +178,47 @@ public class Monopoly {
 				}
 			}
 		}
+		else if(command.contains("demolish")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					int site_cost = players.get(current_player).site_cost[selectedProCtr] / 2;
+					players.get(current_player).withdrawFromBalance(-1 * site_cost);
+					site_owned[selectedProCtr] = "0";
+					site_owners[selectedProCtr] = null;
+					ui.displayString("site demolished");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+		}
 		else {
 		
 		switch (command) {
@@ -320,6 +361,7 @@ public class Monopoly {
 					+ "\n 'buy': buys the current site"
 					+ "\n 'property': to get list of properties you own"
 					+ "\n 'build '<property-name>' '<units>'' : You can build house/hotel"
+					+ "\n 'demolish '<property-name>' '<units>'' : You can demolish house/hotel"
 					+ "\n 'bankrupt' : Declare bankruptcy"
 					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
