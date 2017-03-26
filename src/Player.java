@@ -17,6 +17,10 @@ public class Player {
 	int[] site_cost = {0,60,0,60,0,200,100,0,100,120,0,140,150,140,160,200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,
 			320,200,0,350,0,400
 		};
+	public String [] color_group = {null, "brown", null, "brown", null, null, "lightblue", null,
+			"lightblue", "lightblue", null, "pink", null, "pink", "pink", null, "orange", null,
+			"orange", "orange", null, "red", null, "red", "red", null, "yellow", "yellow", null,
+			"yellow", null, "green", "green", null, "green", null, null, "blue", null, "blue"};
 	int site_rent = 100;
 	
 	

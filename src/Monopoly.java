@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -64,6 +67,26 @@ public class Monopoly {
 		}
 		return (current_player);
 	}
+	
+	private List<String> splitCommand(String command){
+		List<String> matchList = new ArrayList<String>();
+		Pattern regex = Pattern.compile("[^\\s\"']+|\"([^\"]*)\"|'([^']*)'");
+		Matcher regexMatcher = regex.matcher(command);
+		while (regexMatcher.find()) {
+		    if (regexMatcher.group(1) != null) {
+		        // Add double-quoted string without the quotes
+		        matchList.add(regexMatcher.group(1));
+		    } else if (regexMatcher.group(2) != null) {
+		        // Add single-quoted string without the quotes
+		        matchList.add(regexMatcher.group(2));
+		    } else {
+		        // Add unquoted word
+		        matchList.add(regexMatcher.group());
+		    }
+		} 
+		
+		return matchList;
+	}
 
 	private int echo(int current_player) {
 		// The number of players is dynamic depending on user input, using that instead of 6
@@ -110,9 +133,53 @@ public class Monopoly {
 		
 		command = ui.getCommand();
 		ui.displayString(command);
-		 
-
-		// Using switch instead of if-if ladder, as it is more efficient
+		
+		if (command.contains("build")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					String propColor = players.get(current_player).color_group[selectedProCtr];
+					boolean allColorPropBought = isAllColorPropBrought(current_player, propColor);
+					if(allColorPropBought == true){
+						ui.displayString("Created " + matchList.get(2) + " at " + allProperties[selectedProCtr]);
+					}
+					else {
+						ui.displayString("You don't own all the color groups");
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							System.out.println("Sleep exeception.");
+						}
+					}
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+		}
+		else {
+		
 		switch (command) {
 		
 		case "roll":
@@ -219,7 +286,7 @@ public class Monopoly {
 			ui.displayString("Removing player : " + players.get(current_player).getName());
 			//moving property back to bank after bankruptcy
 			for (int owners_cnt = 0; owners_cnt < site_owners.length; owners_cnt++) {
-			    if(site_owners[owners_cnt]!= null && site_owners[owners_cnt].equals(players.get(current_player).getName())){
+			    if(site_owners[owners_cnt] != null && site_owners[owners_cnt].equals(players.get(current_player).getName())){
 			    	site_owned[owners_cnt] = "0";
 			    }
 			}
@@ -252,6 +319,7 @@ public class Monopoly {
 					+ "\n 'end turn': end your turn and switch to next player \n" + "\n  'exit': exit game\n"
 					+ "\n 'buy': buys the current site"
 					+ "\n 'property': to get list of properties you own"
+					+ "\n 'build '<property-name>' '<units>'' : You can build house/hotel"
 					+ "\n 'bankrupt' : Declare bankruptcy"
 					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
@@ -268,10 +336,26 @@ public class Monopoly {
 				System.out.println("Sleep exeception.");
 			}
 		}
+		}
 
 		echo(current_player);
 		return (current_player);
 
+	}
+
+	private boolean isAllColorPropBrought(int current_player, String propColor) {
+		List <Integer> allIndexes = new ArrayList<Integer>();
+		String [] allColors = players.get(current_player).color_group;
+		for(int i = 0; i< allColors.length; i++){
+			if(allColors[i].equals(propColor)){
+				allIndexes.add(i);
+			}
+		}
+		boolean allOwned = false;
+		for (Integer indx : allIndexes) {
+			
+		}
+		return allOwned;
 	}
 
 	// This method will get all the prerequisites for the game
