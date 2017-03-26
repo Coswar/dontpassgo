@@ -130,7 +130,6 @@ public class Monopoly {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				break;
 				
 			}
 			
@@ -171,6 +170,7 @@ public class Monopoly {
 				}
 				//echo(current_player);
 			}
+			break;
 			
 
 		case "exit":
@@ -200,13 +200,59 @@ public class Monopoly {
 			ui.displayString("This site is allready owned");
 			}
 			break;
-		
+		case "property":
+			ui.displayString("You following properties with you");
+			StringBuffer sb = new StringBuffer();
+			for (int owners_cnt = 0; owners_cnt < site_owners.length; owners_cnt++) {
+			    if(site_owners[owners_cnt] != null && site_owners[owners_cnt].equals(players.get(current_player).getName())){
+			    	sb.append(players.get(current_player).getSiteName(owners_cnt) + ", ");
+			    }
+			}
+			ui.displayString(sb.toString());
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "bankrupt": 
+			ui.displayString("Removing player : " + players.get(current_player).getName());
+			//moving property back to bank after bankruptcy
+			for (int owners_cnt = 0; owners_cnt < site_owners.length; owners_cnt++) {
+			    if(site_owners[owners_cnt]!= null && site_owners[owners_cnt].equals(players.get(current_player).getName())){
+			    	site_owned[owners_cnt] = "0";
+			    }
+			}
+			players.remove(current_player);
+			currentGamePlayerCnt = currentGamePlayerCnt - 1;
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				System.out.println("Sleep exeception.");
+			}
+			if(players.size() == 1){
+				roll_count = 1;
+				ui.displayString("Winner is: " + players.get(0).getName());
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+			else {
+				roll_count = 0;
+				//current_player = (current_player + 1);
+				echo(current_player);
+			}
+			break;
 		case "help":
 		
 			ui.displayString("\n  Available Commands:\n " + "\n  'roll': roll dice and move\n "
 					+ "\n 'balance': to get your current balance \n"
 					+ "\n 'end turn': end your turn and switch to next player \n" + "\n  'exit': exit game\n"
 					+ "\n 'buy': buys the current site"
+					+ "\n 'property': to get list of properties you own"
+					+ "\n 'bankrupt' : Declare bankruptcy"
 					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
 			ui.displayString(command);
@@ -290,7 +336,7 @@ public class Monopoly {
 		game.getPreRequisites();
 		int player_id = game.decideWhoPlaysFirst();
 		game.echo(player_id);
-		game.tour(player_id);
+		//game.tour(player_id);
 		return;
 	}
 }
