@@ -27,7 +27,7 @@ class BoardPanel extends JPanel {
 		setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 		setBackground(Color.WHITE);
 		try {
-			boardImage = ImageIO.read(new File("src/monopoly-original.jpg"));
+			boardImage = ImageIO.read(this.getClass().getResource("monopoly-original.jpg"));
 		} catch (IOException ex) {
 			System.out.println("Could not find the image file " + ex.toString());
 		}
