@@ -10,6 +10,7 @@ public class Monopoly {
 	public static final int MAX_NUM_PLAYERS = 6;
 	public static final int MIN_NUM_PLAYERS = 2;
 	public static final int NUM_SQUARES = 40;
+	// 0 if unowned, 1 if owned, 2 if n/a, 3 if mortgaged
 	public String[] site_owned = {"2", "0", "2", "0", "2", "0", "0", "2", "0", "0", "2", "0", "0", "0", "0", "0", "0", "2", "0", "0", 
 			"2", "0", "2", "0", "0", "0", "0", "0", "0", "0", "2", "0", "0", "2", "0", "0", "2", "0", "2", "0"
 		};
@@ -126,6 +127,12 @@ public class Monopoly {
 				+ (current_player + 1) + ": " + players.get(current_player).getName() + "\n"
 				+ "(Enter 'help' for more info):\n");
 			break;
+		
+		case "3":
+			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "\n it is owned by "
+					+ site_owners[curr_pos] + "\n" + "It is a mortgaged property" +
+					"(Enter 'help' for more info):\n");
+			break;
 		}
 		 
 		// Displaying text with players name, as it looks more user friendly.
@@ -219,6 +226,44 @@ public class Monopoly {
 				}
 			}
 		}
+		else if(command.contains("mortgage")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					site_owned[selectedProCtr] = "3";
+					int price = players.get(current_player).getPrice(selectedProCtr);
+					price = price/2;
+					players.get(current_player).depositToBalance(price);
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+			
+		}
+		
+		
 		else {
 		
 		switch (command) {
