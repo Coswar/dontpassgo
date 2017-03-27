@@ -254,9 +254,44 @@ public class Monopoly {
 				}
 				else{
 					site_owned[selectedProCtr] = "3";
-					int price = players.get(current_player).getPrice(selectedProCtr);
-					price = price/2;
+					int price = players.get(current_player).getMortgage(selectedProCtr);
 					players.get(current_player).depositToBalance(price);
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+			
+		}
+		
+		else if(command.contains("redeem")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					site_owned[selectedProCtr] = "1";
+					int price = players.get(current_player).getMortgage(selectedProCtr);
+					players.get(current_player).withdrawFromBalance(price);
 				}
 			}
 			else{

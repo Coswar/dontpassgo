@@ -17,6 +17,10 @@ public class Player {
 	int[] site_cost = {0,60,0,60,0,200,100,0,100,120,0,140,150,140,160,200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,
 			320,200,0,350,0,400
 		};
+	int[] site_mortgage_value = {0,50,0,50,0,100,50,0,50,60,0,70,75,70,80,100,90,0,90,100,0,110,0,110,120,100,150,150,75,150,0,200,200,0,
+			2000,100,0,175,0,200
+		};
+	
 	public String [] color_group = {null, "brown", null, "brown", null, null, "lightblue", null,
 			"lightblue", "lightblue", null, "pink", null, "pink", "pink", null, "orange", null,
 			"orange", "orange", null, "red", null, "red", "red", null, "yellow", "yellow", null,
@@ -108,6 +112,10 @@ public class Player {
 	
 	public int getPrice(int currpos){
 		return site_cost[currpos];
+	}
+	
+	public int getMortgage(int currpos){
+		return site_mortgage_value[currpos];
 	}
 	
 }
