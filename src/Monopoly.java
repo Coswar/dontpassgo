@@ -450,6 +450,8 @@ public class Monopoly {
 					+ "\n 'build '<property-name>' '<units>'' : You can build house/hotel"
 					+ "\n 'demolish '<property-name>' '<units>'' : You can demolish house/hotel"
 					+ "\n 'bankrupt' : Declare bankruptcy"
+					+ "\n 'mortgage <property-name>': mortgages a property"
+					+ "\n 'redeem <property-name>: redeems a mortgaged property"
 					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
 			ui.displayString(command);
