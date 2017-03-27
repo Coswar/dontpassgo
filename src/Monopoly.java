@@ -114,12 +114,19 @@ public class Monopoly {
 			break;
 			
 		case "1":
+			int temp = current_player;
+			if(players.get(temp).getName() == site_owners[curr_pos]){
+				ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "\n it is owned by you"
+						+ "(Enter 'help' for more info):\n");
+			}
+			else{
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + "\n it is owned by "
 					+ site_owners[curr_pos] + "\n" + "You owe rent of: " +
 					players.get(current_player).getRent(curr_pos) + "\n" + "you can pay this by entering command: pay rent" +"\n" +"      Input Command for Player " 
 					+ (current_player + 1) + ": " + players.get(current_player).getName() + "\n"
 					+ "(Enter 'help' for more info):\n");
 			rent_check = 1;
+			}
 			break;
 			
 		case "2":
