@@ -148,7 +148,10 @@ public class Monopoly {
 		command = ui.getCommand();
 		ui.displayString(command);
 		
-		if (command.contains("build")){
+		switch(command){
+		
+		case "build":
+			
 			List<String> matchList = splitCommand(command);
 			if(matchList.size() == 3){
 				String [] allProperties = players.get(current_player).site_info;
@@ -191,14 +194,15 @@ public class Monopoly {
 					System.out.println("Sleep exeception.");
 				}
 			}
-		}
-		else if(command.contains("demolish")){
-			List<String> matchList = splitCommand(command);
-			if(matchList.size() == 3){
+			break;
+		case "demolish":
+				
+			List<String> matchList1 = splitCommand(command);
+			if(matchList1.size() == 3){
 				String [] allProperties = players.get(current_player).site_info;
 				int selectedProCtr = -1;
 				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
-					if(matchList.get(1).equals(allProperties[proCtr])){
+					if(matchList1.get(1).equals(allProperties[proCtr])){
 						selectedProCtr = proCtr;
 						break;
 					}
@@ -232,14 +236,16 @@ public class Monopoly {
 					System.out.println("Sleep exeception.");
 				}
 			}
-		}
-		else if(command.contains("mortgage")){
-			List<String> matchList = splitCommand(command);
-			if(matchList.size() == 3){
+			break;
+			
+		case "mortage":
+				
+			List<String> matchList2 = splitCommand(command);
+			if(matchList2.size() == 3){
 				String [] allProperties = players.get(current_player).site_info;
 				int selectedProCtr = -1;
 				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
-					if(matchList.get(1).equals(allProperties[proCtr])){
+					if(matchList2.get(1).equals(allProperties[proCtr])){
 						selectedProCtr = proCtr;
 						break;
 					}
@@ -267,15 +273,15 @@ public class Monopoly {
 				}
 			}
 			
-		}
-		
-		else if(command.contains("redeem")){
-			List<String> matchList = splitCommand(command);
-			if(matchList.size() == 3){
+			break;
+			
+		case "redeem":
+			List<String> matchList3 = splitCommand(command);
+			if(matchList3.size() == 3){
 				String [] allProperties = players.get(current_player).site_info;
 				int selectedProCtr = -1;
 				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
-					if(matchList.get(1).equals(allProperties[proCtr])){
+					if(matchList3.get(1).equals(allProperties[proCtr])){
 						selectedProCtr = proCtr;
 						break;
 					}
@@ -302,19 +308,12 @@ public class Monopoly {
 					System.out.println("Sleep exeception.");
 				}
 			}
+			break;
 			
-		}
-		
-		
-		else {
-		
-		switch (command) {
-		
 		case "roll":
 			if (roll_count == 0){
 				roll_count = roll_count + 1;
 				ui.displayString("                                   Moving!");
-				//ui.displayString("rollcount:"+roll_count);
 				current_player = tour(current_player);
 				echo(current_player);
 			}
@@ -396,19 +395,16 @@ public class Monopoly {
 			}
 			break;
 		case "property":
-			ui.displayString("You following properties with you");
+			
 			StringBuffer sb = new StringBuffer();
 			for (int owners_cnt = 0; owners_cnt < site_owners.length; owners_cnt++) {
 			    if(site_owners[owners_cnt] != null && site_owners[owners_cnt].equals(players.get(current_player).getName())){
 			    	sb.append(players.get(current_player).getSiteName(owners_cnt) + ", ");
 			    }
 			}
-			ui.displayString(sb.toString());
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ui.displayString("You own the following properties:\n" + sb.toString() + "\nPress Enter to continue!");
+			command = ui.getCommand();
+			ui.displayString(command);
 			break;
 		case "bankrupt": 
 			ui.displayString("Removing player : " + players.get(current_player).getName());
@@ -440,6 +436,7 @@ public class Monopoly {
 				echo(current_player);
 			}
 			break;
+			
 		case "help":
 		
 			ui.displayString("\n  Available Commands:\n " + "\n  'roll': roll dice and move\n "
@@ -467,7 +464,7 @@ public class Monopoly {
 				System.out.println("Sleep exeception.");
 			}
 		}
-		}
+		
 
 		echo(current_player);
 		return (current_player);
