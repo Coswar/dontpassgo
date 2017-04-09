@@ -260,6 +260,38 @@ public class Monopoly {
 				}
 			}
 		}
+		else if(command.contains("mortage")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 2){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+		}
 		else {
 		switch(command){
 		
@@ -424,7 +456,18 @@ public class Monopoly {
 			break;
 			
 		case "roll":
-			if (roll_count == 0){
+			int currbalance = players.get(current_player).getBalance();
+			if(currbalance  < 0){
+				ui.displayString("Your current balance is < 0, " 
+						+ "\nPlease sell/mortgage your site to play your turn!"
+						+ "\n If you don't have any property to sell, declare bankruptcy to proceed.");
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			else if (roll_count == 0){
 				roll_count = roll_count + 1;
 				ui.displayString("                                   Moving!");
 				current_player = tour(current_player);
