@@ -170,6 +170,97 @@ public class Monopoly {
 		command = ui.getCommand();
 		ui.displayString(command);
 		
+		if (command.contains("build")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					String propColor = players.get(current_player).color_group[selectedProCtr];
+					boolean allColorPropBought = isAllColorPropBrought(current_player, propColor);
+					if(allColorPropBought == true){
+						ui.displayString("Created " + matchList.get(2) + " at " + allProperties[selectedProCtr]);
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							System.out.println("Sleep exeception.");
+						}
+					}
+					else {
+						ui.displayString("You don't own all the color groups");
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							System.out.println("Sleep exeception.");
+						}
+					}
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+		}
+		else if(command.contains("demolish")){
+			List<String> matchList = splitCommand(command);
+			if(matchList.size() == 3){
+				String [] allProperties = players.get(current_player).site_info;
+				int selectedProCtr = -1;
+				for (int proCtr = 0; proCtr < allProperties.length; proCtr++){
+					if(matchList.get(1).equals(allProperties[proCtr])){
+						selectedProCtr = proCtr;
+						break;
+					}
+				}
+				if (selectedProCtr == -1){
+					ui.displayString("Wrong property selected!");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+				else{
+					int site_cost = players.get(current_player).site_cost[selectedProCtr] / 2;
+					players.get(current_player).withdrawFromBalance(-1 * site_cost);
+					site_owned[selectedProCtr] = "0";
+					site_owners[selectedProCtr] = null;
+					ui.displayString("site demolished");
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
+				}
+			}
+			else{
+				ui.displayString("Incorrect Input, try again!");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep exeception.");
+				}
+			}
+		}
+		else {
 		switch(command){
 		
 		case "build":
@@ -486,6 +577,7 @@ public class Monopoly {
 				System.out.println("Sleep exeception.");
 			}
 		}
+		}
 		
 
 		echo(current_player);
@@ -497,7 +589,7 @@ public class Monopoly {
 		List <Integer> allIndexes = new ArrayList<Integer>();
 		String [] allColors = players.get(current_player).color_group;
 		for(int i = 0; i< allColors.length; i++){
-			if(allColors[i].equals(propColor)){
+			if(allColors[i]!= null && allColors[i].equals(propColor)){
 				allIndexes.add(i);
 			}
 		}
