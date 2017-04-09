@@ -280,7 +280,16 @@ public class Monopoly {
 					}
 				}
 				else{
-					
+					int mortage_value = players.get(current_player).site_mortgage_value[selectedProCtr];
+					players.get(current_player).withdrawFromBalance(-1 * mortage_value);
+					site_owned[selectedProCtr] = "0";
+					site_owners[selectedProCtr] = null;
+					ui.displayString("site mortaged");
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
 				}
 			}
 			else{
