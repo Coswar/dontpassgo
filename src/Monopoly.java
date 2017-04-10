@@ -34,7 +34,7 @@ public class Monopoly {
 		die1 = Player.roll(1);
 		die2 = Player.roll(1);
 		total_die = (die1+die2);
-		
+		int jailcheck = players.get(current_player).checkInJail();
 		for (int p = current_player; p < MAX_NUM_PLAYERS; p++) {
 			for (int i = 0; i < NUM_SQUARES; i++) {
 				players.get(p).move(+total_die);
@@ -46,6 +46,9 @@ public class Monopoly {
 				}
 				if(die1==die2){
 					ui.displayString("Double Roll! Move again!");
+					if (jailcheck == 1){
+						players.get(current_player).changelocation(11,0);
+					}
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -172,7 +175,10 @@ public class Monopoly {
 			break;
 			
 		case"8":
-			//implement code for going to jail
+			players.get(current_player).changelocation(10,1);
+			ui.displayString("You have been sent to jail " + "\n You can use a chance card or double roll to escape"
+					  +"(Enter 'help' for more info):\n");
+			ui.display();
 		}
 	}
 		 
@@ -478,6 +484,7 @@ public class Monopoly {
 			
 		case "roll":
 			int currbalance = players.get(current_player).getBalance();
+			int jailcheck = players.get(current_player).checkInJail();
 			if(currbalance  < 0){
 				ui.displayString("Your current balance is < 0, " 
 						+ "\nPlease sell/mortgage your site to play your turn!"
@@ -488,6 +495,11 @@ public class Monopoly {
 					e.printStackTrace();
 				}
 			}
+			if(jailcheck == 1){
+				ui.displayString("You are in Jail. Please use a chance card, pay 50 or roll a double to leave.");
+
+			}
+				
 			else if (roll_count == 0){
 				roll_count = roll_count + 1;
 				ui.displayString("                                   Moving!");
@@ -505,7 +517,61 @@ public class Monopoly {
 			}
 			
 			break;
-		
+		case "use jail card":
+			int jailcheck1 = players.get(current_player).checkInJail();
+			int jailcard = players.get(current_player).checkJailCard();
+			if (jailcheck1 == 1 && jailcard == 1){
+				players.get(current_player).changelocation(10,0);
+				players.get(current_player).usedJailCard();
+				ui.displayString("You have escaped jail!");
+				
+			}
+			if(jailcheck1 == 1 && jailcard == 0)
+			{
+				ui.displayString("You do not have a jail card to use!");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			else{
+				ui.displayString("You are not currently in jail");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			break;
+		case "pay to leave":
+			int jailcheck2 = players.get(current_player).checkInJail();
+			int temp_balance = players.get(current_player).getBalance();
+			
+			if (jailcheck2 == 1 && temp_balance > 50){
+				players.get(current_player).withdrawFromBalance(50);
+				players.get(current_player).changelocation(10,0);
+				ui.displayString("You have paid to escape jail!");
+				
+			}
+			if(jailcheck2 == 1 && temp_balance < 50)
+			{
+				ui.displayString("You do not have enough money remaining!");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			else{
+				ui.displayString("You are not currently in jail");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		case "balance":
 		
 			ui.displayString("Your current balance: " + players.get(current_player).getBalance());
@@ -625,7 +691,9 @@ public class Monopoly {
 					+ "\n 'demolish '<property-name>' '<units>'' : You can demolish house/hotel"
 					+ "\n 'bankrupt' : Declare bankruptcy"
 					+ "\n 'mortgage <property-name>': mortgages a property"
-					+ "\n 'redeem <property-name>: redeems a mortgaged property"
+					+ "\n 'redeem <property-name>': redeems a mortgaged property"
+					+ "\n 'pay to leave': pays 50 to bank to leave jail"
+					+ "\n 'use jail card': uses a chance card to escape jail"
 					+ "\n Press enter to continue\n");
 			command = ui.getCommand();
 			ui.displayString(command);

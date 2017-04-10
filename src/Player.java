@@ -6,6 +6,7 @@ public class Player {
 	private int position;			
 	private int balance;
 	private int jailcard = 0;
+	private int jail = 0;
 	private int die1 = (int)(Math.random()*6) + 1;		
 	private int die2 = (int)(Math.random()*6) + 1;
 	public String[] site_info = { "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue", "Income Tax", "Reading Railroad",
@@ -52,8 +53,9 @@ public class Player {
 		return;
 	}
 	
-	public void changelocation(int location){
+	public void changelocation(int location,int senttojail){
 		position = location;
+		jail = senttojail;
 		return;
 	}
 	
@@ -61,6 +63,12 @@ public class Player {
 		jailcard = 1;
 	}
 	
+	public void inJail(int injail){
+		jail = 0;
+	}
+	public int checkInJail(){
+		return jail;
+	}
 	public void usedJailCard(){
 		jailcard = 0;
 	}
