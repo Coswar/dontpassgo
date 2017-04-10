@@ -4,7 +4,8 @@ public class Player {
 	private String name;		
 	private String tokenColour;
 	private int position;			
-	private int balance;		
+	private int balance;
+	private int jailcard = 0;
 	private int die1 = (int)(Math.random()*6) + 1;		
 	private int die2 = (int)(Math.random()*6) + 1;
 	public String[] site_info = { "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue", "Income Tax", "Reading Railroad",
@@ -49,6 +50,23 @@ public class Player {
 			position = position % Monopoly.NUM_SQUARES;
 		}
 		return;
+	}
+	
+	public void changelocation(int location){
+		position = location;
+		return;
+	}
+	
+	public void gotJailCard(){
+		jailcard = 1;
+	}
+	
+	public void usedJailCard(){
+		jailcard = 0;
+	}
+	
+	public int checkJailCard(){
+		return jailcard;
 	}
 	
 	public static int roll(int die1) {		

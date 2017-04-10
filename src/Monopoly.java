@@ -143,10 +143,16 @@ public class Monopoly {
 			break;
 		
 		case "4":
-			//implement code for community chest
+			double ran = Math.random()*16;
+			String disp;
+			disp = Cards.communityChest(current_player, ran, curr_pos, players,ui);
+			ui.displayString(disp);
 			
 		case"5":
-			//implement code for chance
+			double ran2 = Math.random()*16;
+			String disp2;
+			disp2 = Cards.chance(current_player, ran2, curr_pos, players,ui);
+			ui.displayString(disp2);
 			
 		case"6":
 			ui.displayString("You have landed on income tax "   + "\n Tax of 200 has automatically been paid from your account "
