@@ -105,6 +105,7 @@ public class Monopoly {
 		check = site_owned[curr_pos];
 		ui.displayString("Input comaands for " + players.get( current_player).getName());
 		
+		
 		if(roll_count == 1){
 		switch(check){
 		case "0":
