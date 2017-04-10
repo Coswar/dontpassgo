@@ -46,13 +46,13 @@ public class Cards{
 		switch(check){
 			
 		case "0":
-			players.get(curplayer).changelocation(0);
+			players.get(curplayer).changelocation(0,0);
 			ui.display();
 		case "1":
-			players.get(curplayer).changelocation(1);
+			players.get(curplayer).changelocation(1,0);
 			ui.display();
 		case "2":
-			players.get(curplayer).changelocation(10);
+			players.get(curplayer).changelocation(10,1);
 			ui.display();
 		case "3":
 			players.get(curplayer).withdrawFromBalance(100);
@@ -108,22 +108,22 @@ public class Cards{
 		switch(check){
 			
 		case "0":
-			players.get(curplayer).changelocation(0);
+			players.get(curplayer).changelocation(0,0);
 			ui.display();
 		case "1":
-			players.get(curplayer).changelocation(31);
+			players.get(curplayer).changelocation(31,0);
 			ui.display();
 		case "2":
-			players.get(curplayer).changelocation(10);
+			players.get(curplayer).changelocation(10,1);
 			ui.display();
 		case "3":
-			players.get(curplayer).changelocation(5);
+			players.get(curplayer).changelocation(5,0);
 			ui.display();
 		case "4":
-			players.get(curplayer).changelocation(24);
+			players.get(curplayer).changelocation(24,0);
 			ui.display();
 		case "5":
-			players.get(curplayer).changelocation(39);
+			players.get(curplayer).changelocation(39,0);
 			ui.display();
 		case "6":
 			players.get(curplayer).move(curpos - 3);
