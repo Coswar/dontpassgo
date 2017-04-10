@@ -21,7 +21,6 @@ public class Monopoly {
 	int roll_count = 0;
 	int currentGamePlayerCnt = 0;
 	int curr_pos = 0;
-	int rent_check = 0;
 	String check;
 
 	Monopoly() {
@@ -88,20 +87,22 @@ public class Monopoly {
 		
 		return matchList;
 	}
-
+ 
 	private int echo(int current_player) {
 		// The number of players is dynamic depending on user input, using that instead of 6
 		if (current_player == currentGamePlayerCnt) {
 			current_player = 0;
 		}
 
+		 
 		curr_pos = players.get(current_player).getPosition();
 		String command;
 		ui.display();
 		
 		check = site_owned[curr_pos];
-		ui.displayString(check);
+		ui.displayString("Input comaands for " + players.get( current_player).getName());
 		
+		if(roll_count == 1){
 		switch(check){
 		case "0":
 			ui.displayString("You have landed on " + players.get(current_player).getSiteName(curr_pos) + " it is not owned \n" +
@@ -143,16 +144,20 @@ public class Monopoly {
 			break;
 		
 		case "4":
-			double ran = Math.random()*16;
+			int ran = (int)(Math.random()*16);
 			String disp;
 			disp = Cards.communityChest(current_player, ran, curr_pos, players,ui);
+			echo(current_player);
 			ui.displayString(disp);
+			break;
 			
 		case"5":
-			double ran2 = Math.random()*16;
+			int ran2 = (int)(Math.random()*16);
 			String disp2;
 			disp2 = Cards.chance(current_player, ran2, curr_pos, players,ui);
+			echo(current_player);
 			ui.displayString(disp2);
+			break;
 			
 		case"6":
 			ui.displayString("You have landed on income tax "   + "\n Tax of 200 has automatically been paid from your account "
@@ -169,6 +174,7 @@ public class Monopoly {
 		case"8":
 			//implement code for going to jail
 		}
+	}
 		 
 		// Displaying text with players name, as it looks more user friendly.
  
@@ -513,7 +519,7 @@ public class Monopoly {
 		
 		case "end turn":
 			if(roll_count == 1){
-				ui.displayString("                                   Next Player!");
+				ui.displayString("Next Player!");
 
 				try {
 					Thread.sleep(500);

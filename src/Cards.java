@@ -40,40 +40,53 @@ public class Cards{
 		"Get out of jail free"
 		};
 	
-	public static String communityChest(int curplayer, double roll, int curpos, ArrayList<Player> players, UI ui){
-		String check = Double.toString(roll);
+	public static String communityChest(int curplayer, int roll, int curpos, ArrayList<Player> players, UI ui){
+		String check = Integer.toString(roll);
 		
 		switch(check){
 			
 		case "0":
 			players.get(curplayer).changelocation(0);
 			ui.display();
+			break;
 		case "1":
 			players.get(curplayer).changelocation(1);
 			ui.display();
+			break;
 		case "2":
 			players.get(curplayer).changelocation(10);
 			ui.display();
+			break;
 		case "3":
 			players.get(curplayer).withdrawFromBalance(100);
+			break;
 		case "4":
-			players.get(curplayer).withdrawFromBalance(50);		
+			players.get(curplayer).withdrawFromBalance(50);
+			break;
 		case "5":
-			players.get(curplayer).withdrawFromBalance(50);	
+			players.get(curplayer).withdrawFromBalance(50);
+			break;
 		case "6":
 			players.get(curplayer).depositToBalance(200);
+			break;
 		case "7":
-			players.get(curplayer).depositToBalance(100);	
+			players.get(curplayer).depositToBalance(100);
+			break;
 		case "8":
-			players.get(curplayer).depositToBalance(100);	
+			players.get(curplayer).depositToBalance(100);
+			break;
 		case "9":
-			players.get(curplayer).depositToBalance(50);	
+			players.get(curplayer).depositToBalance(50);
+			break;
 		case "10":
 			players.get(curplayer).depositToBalance(25);
+			break;
 		case "11":
 			players.get(curplayer).depositToBalance(20);
+			break;
 		case "12":
 			players.get(curplayer).depositToBalance(10);
+			break;
 		case "13":
 			int i = 0;
 			while(players.get(i) != null){
@@ -81,8 +94,10 @@ public class Cards{
 				i++;
 			};
 			players.get(curplayer).depositToBalance(10*i);
+			break;
 		case "14":
 			players.get(curplayer).gotJailCard();
+			break;
 		case "15":
 			String choice;
 			ui.displayString("Enter 'fine' to pay fine of 10, or 'chance' to pick a chance card");
@@ -92,61 +107,76 @@ public class Cards{
 			case"fine":
 				players.get(curplayer).withdrawFromBalance(10);
 			case"chance":
-				double ran = Math.random()*16;
+				int ran = (int)(Math.random()*16);
 				Cards.chance(curplayer, ran, curpos, players, ui );
 				roll = 16;
 			}
+			break;
 			
 		}
-		int temp = (int)roll;
-		return community_chest[temp];
+		
+		return community_chest[roll];
 	}
 	
-	public static String chance(int curplayer, double roll, int curpos, ArrayList<Player> players, UI ui){
-		String check = Double.toString(roll);
+	public static String chance(int curplayer, int roll, int curpos, ArrayList<Player> players, UI ui){
+		String check = Integer.toString(roll);
 		
 		switch(check){
 			
 		case "0":
 			players.get(curplayer).changelocation(0);
 			ui.display();
+			break;
 		case "1":
 			players.get(curplayer).changelocation(31);
 			ui.display();
+			break;
 		case "2":
 			players.get(curplayer).changelocation(10);
 			ui.display();
+			break;
 		case "3":
 			players.get(curplayer).changelocation(5);
 			ui.display();
+			break;
 		case "4":
 			players.get(curplayer).changelocation(24);
 			ui.display();
+			break;
 		case "5":
 			players.get(curplayer).changelocation(39);
 			ui.display();
+			break;
 		case "6":
 			players.get(curplayer).move(curpos - 3);
+			ui.display();
+			break;
 		case "7":
 			// daire
 		case "8":
 			//daire
 		case "9":
 			players.get(curplayer).withdrawFromBalance(150);
+			break;
 		case "10":
 			players.get(curplayer).withdrawFromBalance(20);
+			break;
 		case "11":
 			players.get(curplayer).withdrawFromBalance(15);
+			break;
 		case "12":
 			players.get(curplayer).depositToBalance(150);
+			break;
 		case "13":
 			players.get(curplayer).depositToBalance(100);
+			break;
 		case "14":
 			players.get(curplayer).depositToBalance(50);
+			break;
 		case "15":
 			players.get(curplayer).gotJailCard();
+			break;
 		}
-		int temp = (int)roll;
-		return chance[temp];
+		return chance[roll];
 	}
 }
