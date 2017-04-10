@@ -189,6 +189,7 @@ public class Monopoly {
 			ui.displayString("You have been sent to jail " + "\n You can use a chance card or double roll to escape"
 					  +"(Enter 'help' for more info):\n");
 			ui.display();
+			echo(current_player);
 		}
 	}
 		 
