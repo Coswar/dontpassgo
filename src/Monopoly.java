@@ -47,7 +47,8 @@ public class Monopoly {
 				if(die1==die2){
 					ui.displayString("Double Roll! Move again!");
 					if (jailcheck == 1){
-						players.get(current_player).changelocation(11,0);
+						ui.displayString("You have escaped jail!");
+						players.get(current_player).changelocation(10,0);
 					}
 					try {
 						Thread.sleep(1000);
@@ -55,6 +56,14 @@ public class Monopoly {
 						System.out.println("Sleep exeception.");
 					}
 					tour(current_player);
+				}
+				if (jailcheck ==1 && die1!=die2){
+					ui.displayString("No double roll, try again next turn!");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						System.out.println("Sleep exeception.");
+					}
 				}
 				echo(current_player);
 			}
@@ -103,7 +112,7 @@ public class Monopoly {
 		ui.display();
 		
 		check = site_owned[curr_pos];
-		ui.displayString("Input comaands for " + players.get( current_player).getName());
+		ui.displayString("Input commands for " + players.get( current_player).getName() + "\n Enter 'help' for command list");
 		
 		
 		if(roll_count == 1){
@@ -495,10 +504,6 @@ public class Monopoly {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			}
-			if(jailcheck == 1){
-				ui.displayString("You are in Jail. Please use a chance card, pay 50 or roll a double to leave.");
-
 			}
 				
 			else if (roll_count == 0){
