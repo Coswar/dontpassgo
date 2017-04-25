@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class donotpassgo implements Bot {
 	
@@ -39,13 +40,74 @@ public class donotpassgo implements Bot {
 		//       NEED TO IMPLEMENT FOR DOUBLE ROLL CASE
 		if(roll == 0){
 			roll = 1;
-		return "roll";
+		    return "roll";
 		}
 		
 		
 		
 		//Last call to end turn
 		return "done";
+	}
+	
+	public boolean canAutoUseJailcard(Player player){
+		if(player.isInJail() && jailcard > 0){
+			return true;
+		}
+		return false;
+	}
+	
+	public Property mortageHouse(Player player, int money){
+		ArrayList<Property> propertyList = player.getProperties();
+		if (propertyList.size() == 0) {
+			System.out.println("Bankrupt");
+			return null;
+		}
+		else{
+			Property closestProperty = null;
+			int diff = 99999;
+			for(Property p : propertyList){ 
+				if (p instanceof Site) {
+					Site site = (Site) p;
+					if (site.getNumBuildings() >= 1) { //Avoiding hotel and houses
+						continue;
+					}
+				}
+				int currDiff = p.getMortgageValue() - money;
+				if(currDiff >= 0 && diff < currDiff){
+					diff = currDiff;
+					closestProperty = p;
+				}
+			}
+			
+			if (closestProperty == null) {
+				for(Property p : propertyList){
+					if (p instanceof Site) {
+						Site site = (Site) p;
+						if (site.getNumBuildings() == 5) { // hotel
+							continue;
+						}
+					}
+					int currDiff = p.getMortgageValue() - money;
+					if(currDiff >= 0 && diff < currDiff){
+						diff = currDiff;
+						closestProperty = p;
+					}
+				}
+			}
+			
+			if (closestProperty == null) {
+				for(Property p : propertyList){
+					int currDiff = p.getMortgageValue() - money;
+					if(currDiff >= 0 && diff < currDiff){
+						diff = currDiff;
+						closestProperty = p;
+					}
+				}
+			}
+			
+			System.out.println(closestProperty.getShortName());
+			return closestProperty;
+		}
 	}
 	
 	public String getDecision () {
