@@ -109,7 +109,61 @@ public class donotpassgo implements Bot {
 			return closestProperty;
 		}
 	}
-	
+	public Property buySite(Player player, int money) {
+		ArrayList<Property> propertyList = player.getProperties();
+		if (propertyList.size() == 0) {
+			System.out.println("Bankrupt");
+			return null;
+		}
+		else{
+			Property closestProperty = null;
+			int diff = 99999;
+			for(Property p : propertyList){ 
+				if (p instanceof Site) {
+					Site site = (Site) p;
+					if (site.getNumBuildings() >= 1) { //Avoiding hotel and houses
+						continue;
+					}
+				}
+				int currDiff = p.getMortgageValue() - money;
+				if(currDiff >= 0 && diff < currDiff){
+					diff = currDiff;
+					closestProperty = p;
+				}
+			}
+			
+			if (closestProperty == null) {
+				for(Property p : propertyList){
+					if (p instanceof Site) {
+						Site site = (Site) p;
+						if (site.getNumBuildings() == 5) { // hotel
+							continue;
+						}
+					}
+					int currDiff = p.getMortgageValue() - money;
+					if(currDiff >= 0 && diff < currDiff){
+						diff = currDiff;
+						closestProperty = p;
+					}
+				}
+			}
+			
+			if (closestProperty == null) {
+				for(Property p : propertyList){
+					int currDiff = p.getMortgageValue() - money;
+					if(currDiff >= 0 && diff < currDiff){
+						diff = currDiff;
+						closestProperty = p;
+					}
+				}
+			}
+			
+			System.out.println(closestProperty.getShortName());
+			return closestProperty;
+		}
+		
+		
+	}
 	public String getDecision () {
 		// code deciding to pay fine or take chance card
 		// better to take chance
