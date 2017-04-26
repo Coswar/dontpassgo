@@ -111,26 +111,22 @@ public class donotpassgo implements Bot {
 	}
 	public Property buySite(Player player, int money) {
 		ArrayList<Property> propertyList = player.getProperties();
-		if (propertyList.size() == 0) {
-			System.out.println("Bankrupt");
-			return null;
-		}
-		else{
+		
 			Property closestProperty = null;
 			int diff = 99999;
-			for(Property p : propertyList){ 
-				if (p instanceof Site) {
-					Site site = (Site) p;
+			for(Property p1 : propertyList){ 
+				if (p1 instanceof Site) {
+					Site site = (Site) p1;
 					if (site.getNumBuildings() >= 1) { //Avoiding hotel and houses
 						continue;
 					}
 				}
-				int currDiff = p.getMortgageValue() - money;
-				if(currDiff >= 0 && diff < currDiff){
-					diff = currDiff;
-					closestProperty = p;
+				int currDiff1 = p1.getPrice() - money;
+				if(currDiff1 >= 0 && diff < currDiff1){
+					diff = currDiff1;
+					closestProperty = p1;
 				}
-			}
+			
 			
 			if (closestProperty == null) {
 				for(Property p : propertyList){
@@ -140,7 +136,7 @@ public class donotpassgo implements Bot {
 							continue;
 						}
 					}
-					int currDiff = p.getMortgageValue() - money;
+					int currDiff = p.getPrice() - money;
 					if(currDiff >= 0 && diff < currDiff){
 						diff = currDiff;
 						closestProperty = p;
@@ -150,7 +146,7 @@ public class donotpassgo implements Bot {
 			
 			if (closestProperty == null) {
 				for(Property p : propertyList){
-					int currDiff = p.getMortgageValue() - money;
+					int currDiff = p.getPrice() - money;
 					if(currDiff >= 0 && diff < currDiff){
 						diff = currDiff;
 						closestProperty = p;
@@ -158,9 +154,10 @@ public class donotpassgo implements Bot {
 				}
 			}
 			
-			System.out.println(closestProperty.getShortName());
+			System.out.println("buy " + closestProperty.getShortName());
 			return closestProperty;
 		}
+			return null;
 		
 		
 	}
