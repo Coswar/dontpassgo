@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
+
 public class donotpassgo implements Bot {
 	
 	// The public API of YourTeamName must not change
@@ -109,57 +111,25 @@ public class donotpassgo implements Bot {
 			return closestProperty;
 		}
 	}
-	public Property buySite(Player player, int money) {
+	public String buySite(Player player, int money) {
 		ArrayList<Property> propertyList = player.getProperties();
 		
-			Property closestProperty = null;
-			int diff = 99999;
-			for(Property p1 : propertyList){ 
-				if (p1 instanceof Site) {
-					Site site = (Site) p1;
-					if (site.getNumBuildings() >= 1) { //Avoiding hotel and houses
-						continue;
-					}
-				}
-				int currDiff1 = p1.getPrice() - money;
-				if(currDiff1 >= 0 && diff < currDiff1){
-					diff = currDiff1;
-					closestProperty = p1;
-				}
-			
-			
-			if (closestProperty == null) {
-				for(Property p : propertyList){
-					if (p instanceof Site) {
-						Site site = (Site) p;
-						if (site.getNumBuildings() == 5) { // hotel
-							continue;
-						}
-					}
-					int currDiff = p.getPrice() - money;
-					if(currDiff >= 0 && diff < currDiff){
-						diff = currDiff;
-						closestProperty = p;
-					}
-				}
+			int curBalance = player.getBalance();
+			String buyreturn = " ";
+			if(curBalance > 1000)
+			{
+				int curPos = player.getPosition();
+				Property curPosNameProp = propertyList.get(curPos);
+				String curPosName = curPosNameProp.getShortName();;
+				buyreturn = ("buy "+ curPosName);
+				
 			}
-			
-			if (closestProperty == null) {
-				for(Property p : propertyList){
-					int currDiff = p.getPrice() - money;
-					if(currDiff >= 0 && diff < currDiff){
-						diff = currDiff;
-						closestProperty = p;
-					}
-				}
+			else
+			{
+				buyreturn = null;
+				
 			}
-			
-			System.out.println("buy " + closestProperty.getShortName());
-			return closestProperty;
-		}
-			return null;
-		
-		
+			return(buyreturn);
 	}
 	public String getDecision () {
 		// code deciding to pay fine or take chance card
