@@ -124,6 +124,14 @@ public class donotpassgo implements Bot {
 				buyreturn = ("buy "+ curPosName);
 				
 			}
+			if(curBalance > 800 && player)
+			{
+				int curPos = player.getPosition();
+				Property curPosNameProp = propertyList.get(curPos);
+				String curPosName = curPosNameProp.getShortName();;
+				buyreturn = ("buy "+ curPosName);
+				
+			}
 			else
 			{
 				buyreturn = null;
